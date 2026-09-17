@@ -20,17 +20,17 @@ export default function CTA() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
+          viewport={{ once: false, margin: '-60px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="pill pill-ghost mb-8 inline-flex">Partner With Us</span>
+          <span className="pill pill-ghost mb-8 inline-flex">Commercial Partnerships</span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.05] mb-6 mt-4">
-            Let's Build Better
+            Reliable Supply for APIs
             <br />
-            Healthcare Together.
+            &amp; Bulk Intermediates.
           </h2>
           <p className="text-white/75 text-lg leading-relaxed max-w-2xl mx-auto mb-10">
-            Partner with Quest Pharma for your pharmaceutical intermediate and API requirements. Our expert team is ready to support your manufacturing needs.
+            Partner with Quest Pharma for cGMP-compliant chemical synthesis, custom reaction development, and verified bulk intermediate manufacturing.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

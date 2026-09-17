@@ -1,211 +1,280 @@
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Gauge, Building2, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Camera, ChevronLeft, ChevronRight, Maximize2, X, ArrowUpRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const facilities = [
-  {
-    id: 'day',
-    title: 'Manufacturing Complex (Day)',
-    badge: 'Main Plant',
-    icon: Sun,
-    image: '/facility-day.jpg',
-    color: 'from-teal-500/20 to-blue-500/10',
-    description: 'Purpose-built multi-story bulk drug and API intermediate synthesis complex situated in Hyderabad, engineered to stringent cGMP standards.',
-    stats: [
-      { label: 'Footprint', value: 'Multi-acre Campus' },
-      { label: 'Capability', value: 'Commercial Scale' },
-      { label: 'Operations', value: 'Zero Liquid Discharge' },
-    ],
-  },
-  {
-    id: 'night',
-    title: '24/7 Continuous Production (Night)',
-    badge: 'Round-The-Clock',
-    icon: Moon,
-    image: '/facility-night.jpg',
-    color: 'from-amber-500/20 to-purple-500/10',
-    description: 'Continuous reaction operations with dedicated night shifts ensuring dependable production cycles, on-time delivery, and high volumetric output.',
-    stats: [
-      { label: 'Uptime', value: '24 / 7 / 365' },
-      { label: 'Safety', value: 'Multi-layer Redundancy' },
-      { label: 'Monitoring', value: 'Real-time SCADA' },
-    ],
-  },
-  {
-    id: 'reactor',
-    title: 'Precision Reaction Systems (SSR & GLR)',
-    badge: 'Core Synthesis',
-    icon: Gauge,
-    image: '/facility-reactor.jpg',
-    color: 'from-cyan-500/20 to-teal-500/10',
-    description: 'High-grade stainless steel & glass-lined reactors equipped with computerized distillation columns, precision temperature control, and vacuum systems.',
-    stats: [
-      { label: 'Reactors', value: 'SS 316 & Glass Lined' },
-      { label: 'Chemistry', value: 'High Pressure & Cryogenic' },
-      { label: 'Finish', value: 'Pharma Cleanroom Grade' },
-    ],
-  },
+export interface GalleryImage {
+  id: string;
+  image: string;
+}
+
+export const galleryImages: GalleryImage[] = [
+  { id: 'img1',  image: '/img1.jpeg'  },
+  { id: 'img2',  image: '/img2.jpeg'  },
+  { id: 'img3',  image: '/img3.jpeg'  },
+  { id: 'img4',  image: '/img4.jpeg'  },
+  { id: 'img5',  image: '/img5.jpeg'  },
+  { id: 'img6',  image: '/img6.jpeg'  },
+  { id: 'img7',  image: '/img7.jpeg'  },
+  { id: 'img8',  image: '/img8.jpeg'  },
+  { id: 'img9',  image: '/img9.jpeg'  },
+  { id: 'img10', image: '/img10.jpeg' },
+  { id: 'img11', image: '/img11.jpeg' },
 ];
 
 export default function FacilityGallery() {
-  const [activeTab, setActiveTab] = useState(0);
-  const active = facilities[activeTab];
+  const [active, setActive] = useState(0);
+  const [lightbox, setLightbox] = useState(false);
+  const total = galleryImages.length;
+
+  const next = useCallback(() => {
+    setActive(prev => (prev + 1) % total);
+  }, [total]);
+
+  const prev = useCallback(() => {
+    setActive(prev => (prev - 1 + total) % total);
+  }, [total]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'Escape') setLightbox(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [next, prev]);
+
+  const getOffset = (index: number) => {
+    let diff = index - active;
+    if (diff > total / 2) diff -= total;
+    if (diff < -total / 2) diff += total;
+    return diff;
+  };
 
   return (
-    <section className="py-24 lg:py-36 bg-slate-50 dark:bg-slate-900/60 border-y border-slate-100 dark:border-slate-800 transition-colors duration-300 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-2xl"
-          >
-            <span className="pill pill-teal mb-4 inline-flex">
-              <Building2 className="w-3.5 h-3.5" />
-              World-Class Infrastructure
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight mt-3">
-              Take a look inside our <span className="text-gradient">Manufacturing Plant</span>
-            </h2>
-            <p className="text-base text-slate-600 dark:text-slate-400 mt-4 leading-relaxed">
-              Equipped with state-of-the-art chemical synthesis technology, dedicated reaction trains, and round-the-clock operations in Hyderabad, India.
-            </p>
-          </motion.div>
+    <section className="relative py-12 sm:py-16 bg-gradient-to-b from-[#08101e] via-[#050b16] to-[#08101e] text-white overflow-hidden select-none">
+      {/* ── Multi-color ambient aura background ── */}
+      <div className="pointer-events-none absolute inset-0">
+        {/* Center glowing teal spotlight */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[360px] bg-gradient-to-r from-teal-500/20 via-cyan-500/15 to-indigo-500/15 blur-[140px] rounded-full" />
+        {/* Top-right violet aura */}
+        <div className="absolute top-0 right-1/4 w-[450px] h-[220px] bg-purple-500/10 blur-[110px] rounded-full" />
+        {/* Bottom-left emerald aura */}
+        <div className="absolute bottom-0 left-1/4 w-[450px] h-[220px] bg-emerald-500/10 blur-[110px] rounded-full" />
+        {/* Subtle grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+            backgroundSize: '28px 28px',
+          }}
+        />
+      </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <Link to="/infrastructure" className="btn-dark inline-flex">
-              Explore Infrastructure <ArrowUpRight className="w-4 h-4" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        {/* ── Header ── */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-7">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-teal-500/15 to-cyan-500/15 border border-teal-500/30 text-teal-300 text-[10px] font-bold uppercase tracking-widest mb-2 shadow-sm shadow-teal-500/20">
+              <Sparkles className="w-3 h-3 text-teal-400" />
+              Verified Plant Photography
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+              Manufacturing Facility{' '}
+              <span className="bg-gradient-to-r from-teal-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent">
+                Gallery
+              </span>
+            </h2>
+          </div>
+
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            {/* Active Counter Badge */}
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-mono backdrop-blur-md">
+              <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+              <span className="font-black text-teal-300">{String(active + 1).padStart(2, '0')}</span>
+              <span className="text-slate-500">/</span>
+              <span className="text-slate-400">{String(total).padStart(2, '0')}</span>
+            </div>
+
+            <Link
+              to="/infrastructure"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-gradient-to-r from-teal-500/20 to-cyan-500/20 hover:from-teal-500 hover:to-cyan-400 hover:text-slate-950 text-teal-300 border border-teal-500/30 text-xs font-bold transition-all hover:scale-105 shadow-sm shadow-teal-500/20"
+            >
+              All 11 Photos <ArrowUpRight className="w-3.5 h-3.5" />
             </Link>
-          </motion.div>
+
+            <button
+              onClick={() => setLightbox(true)}
+              className="p-2 rounded-xl bg-white/5 hover:bg-teal-500 hover:text-slate-950 text-white border border-white/10 transition-all hover:scale-105 cursor-pointer backdrop-blur-md"
+              title="Fullscreen View"
+            >
+              <Maximize2 className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        {/* Tab Buttons */}
-        <div className="flex flex-wrap gap-3 mb-8">
-          {facilities.map((fac, idx) => {
-            const isSelected = activeTab === idx;
-            const Icon = fac.icon;
+        {/* ── 3D Multi-Card Carousel Stage ── */}
+        <div className="relative h-[290px] sm:h-[350px] md:h-[400px] flex items-center justify-center perspective-[1400px] overflow-hidden">
+          {galleryImages.map((item, index) => {
+            const offset = getOffset(index);
+            const isVisible = Math.abs(offset) <= 2;
+            if (!isVisible) return null;
+
+            const isCenter = offset === 0;
+
+            return (
+              <motion.div
+                key={item.id}
+                className="absolute cursor-pointer"
+                initial={false}
+                animate={{
+                  x: `${offset * 52}%`,
+                  scale: isCenter ? 1 : Math.abs(offset) === 1 ? 0.82 : 0.66,
+                  zIndex: isCenter ? 30 : 20 - Math.abs(offset),
+                  opacity: isCenter ? 1 : Math.abs(offset) === 1 ? 0.55 : 0.2,
+                  rotateY: offset * -15,
+                }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                onClick={() => {
+                  if (isCenter) {
+                    setLightbox(true);
+                  } else {
+                    setActive(index);
+                  }
+                }}
+                style={{
+                  transformStyle: 'preserve-3d',
+                  width: 'clamp(310px, 58vw, 720px)',
+                  aspectRatio: '16/10',
+                }}
+              >
+                {/* Outer Card Shell */}
+                <div
+                  className={`w-full h-full rounded-3xl overflow-hidden transition-all duration-500 ${
+                    isCenter
+                      ? 'shadow-[0_25px_60px_-15px_rgba(20,184,166,0.35)] ring-2 ring-teal-400 border-2 border-teal-400/70'
+                      : 'shadow-xl border border-white/10 hover:border-teal-400/40'
+                  }`}
+                >
+                  <img
+                    src={item.image}
+                    alt=""
+                    className="w-full h-full object-cover object-center pointer-events-none transition-transform duration-700 hover:scale-105"
+                    loading="lazy"
+                  />
+
+                  {/* Soft top-down glass sheen */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-black/30 pointer-events-none" />
+
+                  {/* Dark frosted veil on side cards */}
+                  {!isCenter && (
+                    <div className="absolute inset-0 bg-slate-950/60 hover:bg-slate-950/30 backdrop-blur-[1px] transition-colors duration-300" />
+                  )}
+
+                  {/* Inner glowing highlight ring */}
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/20 rounded-3xl pointer-events-none" />
+                </div>
+              </motion.div>
+            );
+          })}
+
+          {/* ── Glowing Frosted Glass Navigation Controls ── */}
+          <button
+            onClick={prev}
+            className="absolute left-2 sm:left-4 z-40 w-12 h-12 rounded-2xl bg-slate-900/80 hover:bg-gradient-to-r hover:from-teal-400 hover:to-cyan-400 hover:text-slate-950 text-teal-300 backdrop-blur-xl border border-teal-500/30 transition-all flex items-center justify-center cursor-pointer shadow-xl shadow-teal-500/20 hover:scale-110 active:scale-95"
+            aria-label="Previous Photo"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-2 sm:right-4 z-40 w-12 h-12 rounded-2xl bg-slate-900/80 hover:bg-gradient-to-r hover:from-teal-400 hover:to-cyan-400 hover:text-slate-950 text-teal-300 backdrop-blur-xl border border-teal-500/30 transition-all flex items-center justify-center cursor-pointer shadow-xl shadow-teal-500/20 hover:scale-110 active:scale-95"
+            aria-label="Next Photo"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* ── Luminous Pagination Bar ── */}
+        <div className="flex items-center justify-center gap-2 mt-6">
+          {galleryImages.map((_, idx) => {
+            const isSel = active === idx;
             return (
               <button
-                key={fac.id}
-                onClick={() => setActiveTab(idx)}
-                className={`relative flex items-center gap-2.5 px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer ${
-                  isSelected
-                    ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/25 scale-[1.02]'
-                    : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700/60'
+                key={idx}
+                onClick={() => setActive(idx)}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  isSel
+                    ? 'w-10 bg-gradient-to-r from-teal-400 via-cyan-300 to-emerald-400 shadow-md shadow-teal-400/70'
+                    : 'w-2 bg-white/20 hover:bg-white/50 hover:w-3'
                 }`}
-              >
-                <Icon className={`w-4 h-4 ${isSelected ? 'text-white' : 'text-teal-600 dark:text-teal-400'}`} />
-                {fac.badge}
-              </button>
+                aria-label={`Jump to photo ${idx + 1}`}
+              />
             );
           })}
         </div>
-
-        {/* Interactive Showcase Card */}
-        <div className="grid lg:grid-cols-12 gap-8 items-stretch">
-          
-          {/* Main Photo Showcase */}
-          <div className="lg:col-span-8">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 aspect-[16/10] bg-slate-950 group">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={active.image}
-                  src={active.image}
-                  alt={active.title}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                />
-              </AnimatePresence>
-
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
-
-              {/* Overlay Badge */}
-              <div className="absolute bottom-6 left-6 right-6 text-white pointer-events-none">
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/90 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider mb-2.5">
-                  <ShieldCheck className="w-4 h-4" />
-                  Authentic Facility Photography
-                </div>
-                <h3 className="text-xl sm:text-2xl font-black text-white">{active.title}</h3>
-                <p className="text-sm text-slate-300 max-w-xl mt-1.5 line-clamp-2">{active.description}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Details & Live Metrics Panel */}
-          <div className="lg:col-span-4 flex flex-col justify-between p-7 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-[11px] font-bold text-teal-600 dark:text-teal-400 uppercase tracking-widest">
-                  Facility Spotlight
-                </span>
-                <span className="text-xs font-mono text-slate-400">0{activeTab + 1} / 0{facilities.length}</span>
-              </div>
-
-              <h4 className="text-xl font-black text-slate-900 dark:text-white mb-3 leading-snug">
-                {active.title}
-              </h4>
-              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
-                {active.description}
-              </p>
-
-              {/* Metrics Grid */}
-              <div className="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-700/80">
-                {active.stats.map((stat) => (
-                  <div key={stat.label} className="flex items-center justify-between p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
-                    <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">{stat.label}</span>
-                    <span className="text-xs font-bold text-slate-800 dark:text-slate-100">{stat.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 pt-4 border-t border-slate-100 dark:border-slate-700/80">
-              <Link
-                to="/contact"
-                className="btn-primary w-full justify-center !py-3 !text-xs uppercase tracking-wider"
-              >
-                Schedule a Facility Audit
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Thumbnail Preview strip below */}
-        <div className="grid grid-cols-3 gap-4 mt-6">
-          {facilities.map((fac, idx) => (
-            <button
-              key={fac.id}
-              onClick={() => setActiveTab(idx)}
-              className={`relative rounded-2xl overflow-hidden aspect-[16/9] border-2 transition-all duration-300 cursor-pointer group ${
-                activeTab === idx
-                  ? 'border-teal-500 shadow-lg shadow-teal-500/20 scale-[1.02]'
-                  : 'border-transparent opacity-60 hover:opacity-100'
-              }`}
-            >
-              <img src={fac.image} alt={fac.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-              <span className="absolute bottom-2 left-2 text-[10px] sm:text-xs font-bold text-white drop-shadow truncate pr-2">
-                {fac.badge}
-              </span>
-            </button>
-          ))}
-        </div>
-
       </div>
+
+      {/* ── Fullscreen Lightbox Modal ── */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] bg-black/96 backdrop-blur-2xl flex flex-col items-center justify-center p-4 sm:p-6"
+            onClick={() => setLightbox(false)}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setLightbox(false)}
+              className="absolute top-5 right-5 p-3 rounded-2xl bg-white/10 hover:bg-teal-500 hover:text-slate-950 text-white border border-white/15 transition-all cursor-pointer z-20 shadow-lg"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Navigation Chevrons */}
+            <button
+              onClick={e => { e.stopPropagation(); prev(); }}
+              className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-3.5 rounded-2xl bg-white/10 hover:bg-gradient-to-r hover:from-teal-400 hover:to-cyan-400 hover:text-slate-950 text-white border border-white/15 transition-all cursor-pointer z-20 shadow-xl"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={e => { e.stopPropagation(); next(); }}
+              className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-3.5 rounded-2xl bg-white/10 hover:bg-gradient-to-r hover:from-teal-400 hover:to-cyan-400 hover:text-slate-950 text-white border border-white/15 transition-all cursor-pointer z-20 shadow-xl"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Lightbox Center Image */}
+            <div
+              className="flex flex-col items-center max-w-5xl w-full"
+              onClick={e => e.stopPropagation()}
+            >
+              <motion.img
+                key={galleryImages[active].image}
+                initial={{ opacity: 0, scale: 0.94 }}
+                animate={{ opacity: 1, scale: 1 }}
+                src={galleryImages[active].image}
+                alt=""
+                className="max-h-[76vh] max-w-full rounded-3xl object-contain shadow-[0_25px_70px_rgba(0,0,0,0.8)] border border-white/15 mb-4 ring-1 ring-teal-400/30"
+              />
+
+              {/* Minimal Counter Badge */}
+              <span className="px-4 py-1.5 rounded-full bg-slate-900/80 text-teal-300 text-xs font-mono font-bold border border-teal-500/30 shadow-md">
+                {active + 1} / {total}
+              </span>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

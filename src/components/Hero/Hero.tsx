@@ -19,9 +19,8 @@ const wordVariant = {
   }),
 };
 
-const headline1 = 'Advancing Healthcare'.split(' ');
-const headline2 = 'Through'.split(' ');
-const headline3 = 'Science & Innovation.'.split(' ');
+const headline1 = 'Scale, Purity & Precision'.split(' ');
+const headline2 = 'In'.split(' ');
 
 const badges = [
   {
@@ -166,26 +165,26 @@ export default function Hero() {
       {/* 4. Center Typography & Kinetic Interactions */}
       <motion.div
         style={{ y, opacity: op }}
-        className="relative z-10 mx-auto max-w-5xl px-6 lg:px-8 w-full py-20 text-center"
+        className="relative z-10 mx-auto max-w-5xl px-6 lg:px-8 w-full pt-8 pb-16 sm:pt-12 sm:pb-20 text-center"
       >
         {/* Animated Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 15 }}
           animate={isSplashActive ? { opacity: 0, y: 15 } : { opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex justify-center mb-8"
+          className="flex justify-center mb-6"
         >
-          <span className="pill pill-teal shadow-md shadow-teal-500/10 dark:shadow-teal-500/20">
-            <span className="relative flex h-2.5 w-2.5">
+          <span className="pill pill-teal shadow-md shadow-teal-500/10 dark:shadow-teal-500/20 text-xs sm:text-sm py-1.5 px-4">
+            <span className="relative flex h-2 w-2">
               <span className="ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal-500" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
             </span>
             APIs &amp; Pharmaceutical Intermediates · Hyderabad, India
           </span>
         </motion.div>
 
-        {/* Dynamic Multi-line Kinetic Headline — Triggered when splash is complete */}
-        <h1 className="text-[clamp(2.6rem,7.5vw,6rem)] font-black leading-[1.04] tracking-tight text-slate-900 dark:text-white mb-8 select-none">
+        {/* Dynamic Multi-line Kinetic Headline — Grand, impactful, perfectly proportioned */}
+        <h1 className="text-[clamp(2.25rem,4.3vw,4.2rem)] font-black leading-[1.08] tracking-tight text-slate-900 dark:text-white mb-5 select-none">
           <span className="block overflow-hidden pb-1">
             {headline1.map((word, i) => (
               <motion.span
@@ -221,7 +220,7 @@ export default function Hero() {
               animate={animState}
               className="inline-block text-gradient-animated"
             >
-              Science
+              Bulk Drugs
             </motion.span>
           </span>
 
@@ -233,17 +232,17 @@ export default function Hero() {
               animate={animState}
               className="inline-block text-gradient-animated"
             >
-              &amp; Innovation.
+              &amp; Intermediates.
             </motion.span>
           </span>
         </h1>
 
-        {/* Subtitle with fade up */}
+        {/* Subtitle with fade up — Visible up to global markets */}
         <motion.p
           initial={{ opacity: 0, y: 18 }}
           animate={isSplashActive ? { opacity: 0, y: 18 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.45 }}
-          className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10"
+          className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed mb-7 font-normal"
         >
           Quest Pharma delivers high-purity API intermediates and bulk drug products from our state-of-the-art Hyderabad manufacturing complex to global markets.
         </motion.p>
@@ -255,18 +254,27 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Link to="/products" className="btn-primary group">
-            Explore 35+ Products
+          {/* Primary Action Button: Deep Executive Slate with Glowing Teal Accent & Crisp White Text */}
+          <Link
+            to="/products"
+            className="group relative inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm tracking-wide shadow-xl shadow-slate-900/25 hover:shadow-2xl hover:shadow-teal-500/20 hover:scale-105 active:scale-95 transition-all duration-300 border border-slate-700/80 hover:border-teal-400/50"
+          >
+            <span>Explore 35+ Products</span>
             <motion.span
-              animate={{ x: [0, 5, 0] }}
+              animate={{ x: [0, 4, 0] }}
               transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
             >
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 text-teal-400 group-hover:text-cyan-300 transition-colors" />
             </motion.span>
           </Link>
 
-          <Link to="/infrastructure" className="btn-dark">
-            Tour Manufacturing Plant <ChevronRight className="w-4 h-4" />
+          {/* Secondary Action Button: Frosted Glass Capsule */}
+          <Link
+            to="/infrastructure"
+            className="group inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-slate-200/90 dark:border-slate-700/90 text-slate-800 dark:text-slate-100 font-bold text-sm shadow-md shadow-slate-900/5 hover:border-teal-400 hover:text-teal-600 dark:hover:text-teal-300 hover:shadow-xl hover:shadow-teal-500/10 hover:scale-105 active:scale-95 transition-all duration-300"
+          >
+            Tour Manufacturing Plant
+            <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-teal-500 group-hover:translate-x-0.5 transition-all duration-200" />
           </Link>
         </motion.div>
 
@@ -275,7 +283,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={isSplashActive ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-14 inline-flex items-center gap-8 sm:gap-14 px-8 py-4 rounded-3xl bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-lg"
+          className="mt-12 sm:mt-14 inline-flex items-center gap-8 sm:gap-14 px-8 py-3.5 rounded-2xl bg-white/70 dark:bg-slate-900/70 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 shadow-lg"
         >
           {[
             { num: '35+', label: 'Commercial APIs' },
@@ -283,10 +291,10 @@ export default function Hero() {
             { num: '100%', label: 'cGMP Compliance' },
           ].map((s) => (
             <div key={s.label} className="text-center">
-              <p className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-none">
+              <p className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white leading-none">
                 {s.num}
               </p>
-              <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 mt-1.5 uppercase tracking-wider">
+              <p className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">
                 {s.label}
               </p>
             </div>
@@ -297,16 +305,16 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="mt-10 flex flex-col items-center gap-2 pointer-events-none"
+          className="mt-6 flex flex-col items-center gap-1.5 pointer-events-none"
         >
-          <div className="w-5 h-9 rounded-full border-2 border-teal-500/40 flex justify-center pt-1.5">
+          <div className="w-4 h-7 rounded-full border-2 border-teal-500/40 flex justify-center pt-1">
             <motion.div
-              animate={{ y: [0, 10, 0], opacity: [1, 0.3, 1] }}
+              animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="w-1.5 h-2 rounded-full bg-teal-500"
+              className="w-1 h-1.5 rounded-full bg-teal-500"
             />
           </div>
-          <span className="text-[10px] font-bold tracking-[0.2em] text-slate-400 dark:text-slate-500 uppercase">
+          <span className="text-[9px] font-bold tracking-[0.2em] text-slate-400 dark:text-slate-500 uppercase">
             Scroll To Explore
           </span>
         </motion.div>

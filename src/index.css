@@ -78,9 +78,9 @@ html.dark ::-webkit-scrollbar-track { background: transparent; }
 html.dark ::selection { background: #115e59; color: #5eead4; }
 *:focus-visible { outline: 2px solid #14b8a6; outline-offset: 3px; border-radius: 6px; }
 
-/* ─── Custom Cursor ─────────────────────────────────────── */
-body { cursor: none; }
-@media (pointer: coarse) { body { cursor: auto; } }
+/* ─── Custom Cursor Follower (Real Cursor Remains Visible) ─ */
+body { cursor: auto; }
+a, button, [role="button"], input, select, textarea, label { cursor: pointer; }
 
 /* ─── Gradient Text ─────────────────────────────────────── */
 .text-gradient {

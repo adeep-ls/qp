@@ -1,64 +1,175 @@
 import { motion } from 'framer-motion';
-import { Shield, Handshake, Lightbulb, Award } from 'lucide-react';
+import { FlaskConical, Factory, Sparkles, Beaker, Sliders, Globe } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const values = [
+const capabilities = [
   {
-    icon: Shield, title: 'Quality', color: 'text-teal-600 dark:text-teal-400', bg: 'bg-teal-50 dark:bg-teal-950/60', border: 'border-teal-100 dark:border-teal-900/40',
-    accent: 'from-teal-500/10 via-transparent',
-    desc: 'Stringent standards maintained at every step — from raw material to finished product.',
+    num: '01',
+    icon: FlaskConical,
+    tag: 'Core Focus',
+    title: 'API Intermediates',
+    desc: 'High-purity intermediates for life-saving active pharmaceutical ingredients.',
+    color: 'text-teal-600',
+    bg: 'bg-teal-50',
+    border: 'border-teal-100 hover:border-teal-300',
+    shadow: 'hover:shadow-teal-500/15',
+    accent: '#14b8a6',
+    link: '/products',
   },
   {
-    icon: Handshake, title: 'Reliability', color: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-50 dark:bg-blue-950/60', border: 'border-blue-100 dark:border-blue-900/40',
-    accent: 'from-blue-500/10 via-transparent',
-    desc: 'Consistent, on-time supply built on trust, transparency, and long-term partnerships.',
+    num: '02',
+    icon: Factory,
+    tag: 'Commercial Scale',
+    title: 'Bulk Drug Intermediates',
+    desc: 'Multi-ton capacity manufacturing with strict batch-to-batch consistency.',
+    color: 'text-blue-600',
+    bg: 'bg-blue-50',
+    border: 'border-blue-100 hover:border-blue-300',
+    shadow: 'hover:shadow-blue-500/15',
+    accent: '#3b82f6',
+    link: '/products',
   },
   {
-    icon: Lightbulb, title: 'Innovation', color: 'text-purple-600 dark:text-purple-400', bg: 'bg-purple-50 dark:bg-purple-950/60', border: 'border-purple-100 dark:border-purple-900/40',
-    accent: 'from-purple-500/10 via-transparent',
-    desc: 'Continuous process development and new product R&D keeps us at the frontier.',
+    num: '03',
+    icon: Sparkles,
+    tag: 'Tailored R&D',
+    title: 'Custom Synthesis',
+    desc: 'Proprietary route scouting, multi-step synthesis, and pilot scale-up.',
+    color: 'text-purple-600',
+    bg: 'bg-purple-50',
+    border: 'border-purple-100 hover:border-purple-300',
+    shadow: 'hover:shadow-purple-500/15',
+    accent: '#a855f7',
+    link: '/capabilities',
   },
   {
-    icon: Award, title: 'Expertise', color: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-50 dark:bg-amber-950/60', border: 'border-amber-100 dark:border-amber-900/40',
-    accent: 'from-amber-500/10 via-transparent',
-    desc: 'Our team brings 15+ years of cross-domain pharmaceutical industry experience.',
+    num: '04',
+    icon: Beaker,
+    tag: 'High Purity',
+    title: 'Fine Chemicals',
+    desc: 'Specialized organic building blocks and analytical-grade reagents.',
+    color: 'text-rose-600',
+    bg: 'bg-rose-50',
+    border: 'border-rose-100 hover:border-rose-300',
+    shadow: 'hover:shadow-rose-500/15',
+    accent: '#f43f5e',
+    link: '/capabilities',
+  },
+  {
+    num: '05',
+    icon: Sliders,
+    tag: 'Optimization',
+    title: 'Process Development',
+    desc: 'Continuous yield improvement, solvent recovery, and cost efficiency.',
+    color: 'text-amber-600',
+    bg: 'bg-amber-50',
+    border: 'border-amber-100 hover:border-amber-300',
+    shadow: 'hover:shadow-amber-500/15',
+    accent: '#f59e0b',
+    link: '/capabilities',
+  },
+  {
+    num: '06',
+    icon: Globe,
+    tag: 'Global Supply',
+    title: 'Worldwide Logistics',
+    desc: 'Audited supply network with reliable on-time delivery across continents.',
+    color: 'text-green-600',
+    bg: 'bg-green-50',
+    border: 'border-green-100 hover:border-green-300',
+    shadow: 'hover:shadow-green-500/15',
+    accent: '#22c55e',
+    link: '/contact',
   },
 ];
 
 export default function ValueStrip() {
   return (
-    <section className="py-24 lg:py-32 bg-white dark:bg-slate-950 transition-colors duration-300">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="relative py-18 sm:py-24 section-purple overflow-hidden">
+      {/* Soft pastel ambient background aura */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[850px] h-[340px] bg-gradient-to-r from-teal-200/20 via-purple-200/20 to-rose-200/20 blur-[100px] rounded-full" />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          viewport={{ once: false, margin: '-60px' }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-11"
         >
-          <span className="pill pill-teal mb-5 inline-flex">Our Core Values</span>
-          <h2 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight mt-4">
-            Built on four <span className="text-gradient">core principles</span>
+          <span className="pill pill-teal mb-3 inline-flex text-xs py-1 px-3">What We Deliver</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mt-1 mb-3">
+            Comprehensive <span className="text-gradient-vivid">Pharmaceutical Solutions</span>
           </h2>
+          <p className="text-slate-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+            From multi-step chemical synthesis to commercial bulk manufacturing for global pharmaceutical industries.
+          </p>
+
+          {/* Rainbow Gradient Connecting Bar */}
+          <div className="mt-6 max-w-xs sm:max-w-sm mx-auto h-1 rounded-full overflow-hidden bg-slate-200/60">
+            <motion.div
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: false }}
+              transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full origin-center"
+              style={{
+                background: 'linear-gradient(90deg, #14b8a6, #3b82f6, #a855f7, #f43f5e, #f59e0b, #22c55e)',
+              }}
+            />
+          </div>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {values.map((v, i) => (
+        {/* 6 Balanced Colorful Cards Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3.5 sm:gap-4">
+          {capabilities.map((c, i) => (
             <motion.div
-              key={v.title}
-              initial={{ opacity: 0, y: 30 }}
+              key={c.title}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className={`relative p-7 rounded-3xl bg-white dark:bg-slate-900/80 border ${v.border} shadow-sm hover:shadow-lg dark:hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 overflow-hidden group cursor-default`}
+              viewport={{ once: false, margin: '-40px' }}
+              transition={{ duration: 0.4, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className={`relative py-5 px-3.5 sm:px-4 rounded-3xl bg-white border ${c.border} shadow-sm hover:shadow-xl ${c.shadow} transition-all duration-300 flex flex-col items-center text-center group cursor-default`}
             >
-              {/* Accent glow */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${v.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl`} />
-              <div className={`relative w-12 h-12 ${v.bg} rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                <v.icon className={`w-5 h-5 ${v.color}`} />
+              {/* Colorful Squircle Icon Container */}
+              <motion.div
+                whileHover={{ scale: 1.12, rotate: 6 }}
+                transition={{ duration: 0.22 }}
+                className={`w-13 h-13 ${c.bg} border-2 border-white rounded-2xl flex items-center justify-center mb-3 shadow-xs group-hover:shadow-sm transition-shadow`}
+                style={{ borderColor: `${c.accent}30` }}
+              >
+                <c.icon className={`w-6 h-6 ${c.color}`} />
+              </motion.div>
+
+              {/* Tag pill with accent dot */}
+              <div
+                className="inline-flex items-center gap-1.5 text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full mb-2"
+                style={{
+                  color: c.accent,
+                  backgroundColor: `${c.accent}15`,
+                }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: c.accent }} />
+                {c.tag}
               </div>
-              <h3 className="relative text-lg font-black text-slate-900 dark:text-white mb-2">{v.title}</h3>
-              <p className="relative text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{v.desc}</p>
+
+              {/* Title */}
+              <h3 className="text-xs sm:text-[13px] font-black text-slate-800 mb-1.5 leading-tight">{c.title}</h3>
+
+              {/* Full Description without truncation */}
+              <p className="text-[11px] text-slate-500 leading-normal mb-3 min-h-[44px] flex items-center justify-center">{c.desc}</p>
+
+              {/* Sub-link */}
+              <Link
+                to={c.link}
+                className="mt-auto text-[11px] font-bold text-slate-400 hover:text-slate-900 group-hover:text-slate-800 transition-colors inline-flex items-center gap-1"
+              >
+                Explore &rarr;
+              </Link>
             </motion.div>
           ))}
         </div>

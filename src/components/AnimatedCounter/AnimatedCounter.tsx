@@ -11,7 +11,7 @@ interface Props {
 export default function AnimatedCounter({ end, suffix = '', prefix = '', duration = 2 }: Props) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
+  const inView = useInView(ref, { once: false, margin: '-80px' });
 
   useEffect(() => {
     if (!inView) return;

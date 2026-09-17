@@ -21,7 +21,7 @@ export default function About() {
     >
       <PageHero
         label="About Quest Pharma"
-        title="Committed to Better Healthcare"
+        title="Excellence in API & Bulk Chemistry"
         subtitle="APIs and Intermediates manufacturing company in India, vertically integrated with a presence in the API and Bulk Drug Intermediates segments."
       />
 

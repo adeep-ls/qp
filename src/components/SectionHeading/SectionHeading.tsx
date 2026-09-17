@@ -15,7 +15,7 @@ export default function SectionHeading({ label, title, subtitle, centered = true
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: false, margin: '-50px' }}
       className={`max-w-2xl mb-12 lg:mb-16 ${centered ? 'mx-auto text-center' : ''}`}
     >
       {label && (
