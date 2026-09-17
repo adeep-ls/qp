@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, ChevronRight, Sparkles, Activity, Shield, Beaker } from 'lucide-react';
+import { ArrowRight, ChevronRight, Sparkles, Activity, Shield, Beaker, FlaskConical, Globe2 } from 'lucide-react';
 import { useRef } from 'react';
 import InteractiveMoleculeCanvas from '../InteractiveMoleculeCanvas/InteractiveMoleculeCanvas';
 import { useSplash } from '../../context/SplashContext';
@@ -80,6 +80,33 @@ export default function Hero() {
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden hero-gradient transition-colors duration-300 pt-20"
     >
+      {/* 0. Aurora / Mesh Gradient Blobs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="aurora-blob-1 absolute w-[700px] h-[700px] rounded-full blur-[130px] opacity-30"
+          style={{
+            background: 'radial-gradient(circle, rgba(20,184,166,0.9) 0%, rgba(13,148,136,0.6) 40%, transparent 70%)',
+            top: '-15%', left: '-10%',
+          }}
+        />
+        <div
+          className="aurora-blob-2 absolute w-[600px] h-[600px] rounded-full blur-[120px] opacity-25"
+          style={{
+            background: 'radial-gradient(circle, rgba(168,85,247,0.9) 0%, rgba(147,51,234,0.5) 40%, transparent 70%)',
+            top: '10%', right: '-15%',
+          }}
+        />
+        <div
+          className="aurora-blob-3 absolute w-[500px] h-[500px] rounded-full blur-[100px] opacity-20"
+          style={{
+            background: 'radial-gradient(circle, rgba(59,130,246,0.9) 0%, rgba(37,99,235,0.5) 40%, transparent 70%)',
+            bottom: '5%', left: '20%',
+          }}
+        />
+        {/* Dot grid overlay */}
+        <div className="absolute inset-0 dot-pattern opacity-40" />
+      </div>
+
       {/* 1. Real-time Interactive Molecular Canvas Background */}
       <InteractiveMoleculeCanvas />
 
