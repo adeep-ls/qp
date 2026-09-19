@@ -32,7 +32,7 @@ const showcaseItems: ShowcaseItem[] = [
     title: 'Synthetic Route Scouting & Heterocyclic Chemistry',
     description:
       'Our senior chemistry team designs novel, patent-safe synthetic routes from basic chemical building blocks. We prioritize atom economy, reduce reaction steps, and establish robust stereocontrol to guarantee full freedom-to-operate.',
-    image: '/card-synthesis-v2.jpg',
+    image: '/card-synthesis.jpg',
     imageAlt: 'Pharmaceutical synthetic chemistry laboratory',
     icon: FlaskConical,
     accent: 'text-teal-600',

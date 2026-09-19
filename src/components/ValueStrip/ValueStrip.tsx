@@ -42,7 +42,7 @@ const capabilities = [
     border: 'border-purple-100 hover:border-purple-300',
     shadow: 'hover:shadow-purple-500/15',
     accent: '#a855f7',
-    image: '/card-synthesis-v2.jpg',
+    image: '/card-synthesis.jpg',
     link: '/capabilities',
   },
   {
@@ -56,7 +56,7 @@ const capabilities = [
     border: 'border-rose-100 hover:border-rose-300',
     shadow: 'hover:shadow-rose-500/15',
     accent: '#f43f5e',
-    image: '/card-fine-v2.jpg',
+    image: '/card-fine.jpg',
     link: '/capabilities',
   },
   {
@@ -148,6 +148,17 @@ export default function ValueStrip() {
                 <img
                   src={c.image}
                   alt={c.title}
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.dataset.fallback) {
+                      target.dataset.fallback = '1';
+                      if (c.image.includes('synthesis')) {
+                        target.src = '/why-flask.jpg';
+                      } else if (c.image.includes('fine')) {
+                        target.src = '/why-rnd.jpg';
+                      }
+                    }
+                  }}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div
