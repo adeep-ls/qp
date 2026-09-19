@@ -12,6 +12,7 @@ const cards = [
     border: 'border-teal-100 hover:border-teal-300',
     shadow: 'hover:shadow-teal-500/20',
     accent: '#14b8a6',
+    image: '/card-integrated.jpg',
     floatDuration: 4.2,
   },
   {
@@ -23,6 +24,7 @@ const cards = [
     border: 'border-blue-100 hover:border-blue-300',
     shadow: 'hover:shadow-blue-500/20',
     accent: '#3b82f6',
+    image: '/why-expertise.jpg',
     floatDuration: 4.8,
   },
   {
@@ -34,6 +36,7 @@ const cards = [
     border: 'border-purple-100 hover:border-purple-300',
     shadow: 'hover:shadow-purple-500/20',
     accent: '#a855f7',
+    image: '/why-rnd.jpg',
     floatDuration: 4.5,
   },
   {
@@ -45,6 +48,7 @@ const cards = [
     border: 'border-amber-100 hover:border-amber-300',
     shadow: 'hover:shadow-amber-500/20',
     accent: '#f59e0b',
+    image: '/why-cost.jpg',
     floatDuration: 5.1,
   },
 ];
@@ -61,9 +65,11 @@ const checklist = [
 export default function WhyQuestPharma() {
   return (
     <section className="relative py-20 lg:py-28 bg-gradient-to-b from-white via-slate-50/60 to-white overflow-hidden">
+      {/* Subtle scientific grid background pattern */}
+      <div className="pointer-events-none absolute inset-0 dot-pattern opacity-35 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_85%)]" />
       {/* Subtle colorful ambient aura */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-gradient-to-r from-teal-100/30 via-purple-100/30 to-blue-100/30 blur-[120px] rounded-full" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-gradient-to-r from-teal-500/10 via-cyan-500/10 to-blue-500/10 blur-[130px] rounded-full" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
@@ -80,14 +86,14 @@ export default function WhyQuestPharma() {
             Our Core Strengths
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mt-1 mb-3">
-            Why Choose <span className="text-gradient-vivid">Quest Pharma</span>
+            Why Choose <span className="text-gradient">Quest</span>
           </h2>
           <p className="text-slate-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
             Delivering chemical excellence through vertical integration, deep industry talent, and uncompromised quality.
           </p>
         </motion.div>
 
-        {/* Feature Cards Row with Organic Floating Motion */}
+        {/* Feature Cards Row with Background Images */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
           {cards.map((c, i) => (
             <motion.div
@@ -99,45 +105,56 @@ export default function WhyQuestPharma() {
               whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.2 } }}
               className="relative"
             >
-              {/* Continuous subtle floating animation */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{
-                  duration: c.floatDuration,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: i * 0.4,
-                }}
-                className={`p-6 sm:p-7 rounded-3xl bg-white border ${c.border} shadow-sm hover:shadow-2xl ${c.shadow} transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden`}
+              <div
+                className={`rounded-3xl bg-white border ${c.border} shadow-sm hover:shadow-2xl ${c.shadow} transition-all duration-300 group cursor-pointer flex flex-col h-full relative overflow-hidden`}
               >
                 {/* Top accent glowing bar */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-1 transition-all duration-300 opacity-60 group-hover:opacity-100 group-hover:h-1.5"
+                  className="absolute top-0 left-0 right-0 h-1 transition-all duration-300 opacity-60 group-hover:opacity-100 group-hover:h-1.5 z-20"
                   style={{
                     background: `linear-gradient(90deg, ${c.accent}, transparent)`,
                   }}
                 />
 
-                {/* Animated Squircle Icon */}
-                <motion.div
-                  whileHover={{ scale: 1.15, rotate: 10 }}
-                  transition={{ duration: 0.25 }}
-                  className={`w-12 h-12 ${c.bg} rounded-2xl flex items-center justify-center mb-5 shadow-xs group-hover:shadow-md transition-shadow`}
-                  style={{ border: `2px solid ${c.accent}30` }}
-                >
-                  <c.icon className={`w-6 h-6 ${c.color}`} />
-                </motion.div>
+                {/* Card Image */}
+                <div className="relative h-36 sm:h-40 w-full overflow-hidden">
+                  <img
+                    src={c.image}
+                    alt={c.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: `linear-gradient(to bottom, ${c.accent}15 0%, ${c.accent}30 50%, white 100%)`,
+                    }}
+                  />
+                  {/* Icon floating at the boundary */}
+                  <div className="absolute bottom-0 left-6 translate-y-1/2 z-10">
+                    <motion.div
+                      whileHover={{ scale: 1.15, rotate: 10 }}
+                      transition={{ duration: 0.25 }}
+                      className={`w-12 h-12 ${c.bg} rounded-2xl flex items-center justify-center shadow-md border-2 border-white`}
+                      style={{ borderColor: `${c.accent}30` }}
+                    >
+                      <c.icon className={`w-6 h-6 ${c.color}`} />
+                    </motion.div>
+                  </div>
+                </div>
 
-                {/* Title */}
-                <h3 className="font-black text-slate-900 text-base mb-2 group-hover:text-slate-950 transition-colors">
-                  {c.title}
-                </h3>
+                {/* Card Content */}
+                <div className="px-6 pt-8 pb-6">
+                  {/* Title */}
+                  <h3 className="font-black text-slate-900 text-base mb-2 group-hover:text-slate-950 transition-colors">
+                    {c.title}
+                  </h3>
 
-                {/* Description */}
-                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                  {c.desc}
-                </p>
-              </motion.div>
+                  {/* Description */}
+                  <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                    {c.desc}
+                  </p>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>

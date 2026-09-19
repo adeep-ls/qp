@@ -15,9 +15,9 @@ const ticker = [...items, ...items];
 
 export default function MarqueeTicker() {
   return (
-    <section className="relative py-5 bg-slate-50 border-y border-slate-100 overflow-hidden">
-      <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
+    <section className="relative py-4 sm:py-5 bg-white border-y border-slate-100 shadow-xs overflow-hidden">
+      <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
       <div className="flex">
         {[0, 1].map((k) => (

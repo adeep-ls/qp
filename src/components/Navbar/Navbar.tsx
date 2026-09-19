@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { useScrollPosition } from '../../hooks/useScrollPosition';
-import ThemeToggle from '../ThemeToggle/ThemeToggle';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -35,7 +34,7 @@ export default function Navbar() {
       <motion.header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
           solid
-            ? 'bg-white/90 dark:bg-slate-950/85 backdrop-blur-xl shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.5)] border-b border-slate-100 dark:border-slate-800/80'
+            ? 'bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-100'
             : 'bg-transparent'
         }`}
         initial={{ y: -80, opacity: 0 }}
@@ -45,9 +44,9 @@ export default function Navbar() {
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-[70px] items-center justify-between">
 
-            {/* Logo with clean dark mode treatment */}
+            {/* Logo */}
             <Link to="/" aria-label="Quest Pharma Home" className="shrink-0 flex items-center">
-              <div className="p-1 rounded-xl dark:bg-white/95 dark:shadow-[0_0_15px_rgba(20,184,166,0.2)] transition-all">
+              <div className="p-1 rounded-xl transition-all">
                 <img src="/logo.png" alt="Quest Pharma" className="h-9 lg:h-10 w-auto object-contain" />
               </div>
             </Link>
@@ -60,10 +59,10 @@ export default function Navbar() {
                   <Link key={link.path} to={link.path}
                     className={`relative px-3.5 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200
                       ${active
-                        ? 'text-teal-600 dark:text-teal-400'
+                        ? 'text-teal-600'
                         : solid
-                          ? 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800/60'
-                          : 'text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60'
+                          ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+                          : 'text-slate-200 hover:text-white hover:bg-white/10'
                       }`}
                   >
                     {link.name}
@@ -78,10 +77,8 @@ export default function Navbar() {
               })}
             </div>
 
-            {/* Theme Toggle + CTA */}
+            {/* CTA + Mobile Menu */}
             <div className="flex items-center gap-3">
-              <ThemeToggle />
-
               <Link to="/contact"
                 className="hidden lg:inline-flex btn-primary !py-2.5 !px-5 !text-[13px]"
               >
@@ -89,7 +86,7 @@ export default function Navbar() {
               </Link>
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                className="lg:hidden p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
                 aria-label="Toggle menu"
               >
                 {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -110,18 +107,17 @@ export default function Navbar() {
             <motion.div
               initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 260 }}
-              className="absolute right-0 top-0 h-full w-80 max-w-[88vw] bg-white dark:bg-slate-900 shadow-2xl border-l border-transparent dark:border-slate-800 flex flex-col justify-between"
+              className="absolute right-0 top-0 h-full w-80 max-w-[88vw] bg-white shadow-2xl border-l border-slate-100 flex flex-col justify-between"
             >
               {/* Header */}
               <div>
-                <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 dark:border-slate-800">
-                  <div className="p-1 rounded-lg dark:bg-white/95">
+                <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
+                  <div className="p-1 rounded-lg">
                     <img src="/logo.png" alt="Quest Pharma" className="h-8 w-auto object-contain" />
                   </div>
                   <div className="flex items-center gap-2">
-                    <ThemeToggle />
                     <button onClick={() => setMobileOpen(false)}
-                      className="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                      className="p-2 rounded-xl text-slate-500 hover:bg-slate-100 transition-colors">
                       <X className="w-5 h-5" />
                     </button>
                   </div>

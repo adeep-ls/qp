@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Factory, Gauge, Building, CheckCircle2, X, Filter, Maximize2 } from 'lucide-react';
+import { Factory, Gauge, Building, CheckCircle2, X, Filter, Maximize2, Sparkles } from 'lucide-react';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
-import PageHero from '../../components/PageHero/PageHero';
 import CTA from '../../components/CTA/CTA';
 import SectionHeading from '../../components/SectionHeading/SectionHeading';
 import { fadeUp } from '../../utils/animations';
@@ -18,36 +17,12 @@ interface PhotoItem {
 
 const allPhotos: PhotoItem[] = [
   {
-    id: 'img1',
-    image: '/img1.jpeg',
-    title: 'Adeep Life Sciences Facility Entrance',
-    category: 'Campus Overview',
-    description: 'Main entrance signboard welcoming visitors to our cGMP compliant manufacturing unit in Hyderabad.',
-    specs: ['Adeep Life Sciences Pvt. Ltd.', 'Hyderabad, Telangana', 'WHO-GMP Standard'],
-  },
-  {
-    id: 'img2',
-    image: '/img2.jpeg',
-    title: 'Illuminated Campus Entrance (Night View)',
-    category: 'Campus Overview',
-    description: 'Nighttime view of our 24/7 active manufacturing facility entrance with LED illumination.',
-    specs: ['24 / 7 / 365 Uptime', 'CCTV & Perimeter Safety', 'Continuous Operations'],
-  },
-  {
-    id: 'img3',
-    image: '/img3.jpeg',
-    title: 'Main Campus Driveway & Security Gate',
-    category: 'Infrastructure',
-    description: 'Secure gated entry driveway for material transport vehicles and regulatory auditors.',
-    specs: ['Gated Security', 'Heavy Transport Access', 'Eco-Friendly Campus'],
-  },
-  {
-    id: 'img4',
-    image: '/img4.jpeg',
-    title: 'Plant Garden Pathway & Greenery Enclosure',
-    category: 'EHS & Environment',
-    description: 'Paved pedestrian pathway surrounded by green cover, maintaining clean environmental surroundings.',
-    specs: ['Green Belt Enclosure', 'Designated Walkways', 'Zero Emission Standards'],
+    id: 'img10',
+    image: '/img10.jpeg',
+    title: 'Analytical Quality Control Testing Laboratory',
+    category: 'Quality Control',
+    description: 'Instrument laboratory equipped for HPLC chromatography, titration, and raw material qualification.',
+    specs: ['HPLC & GC Spectrophotometry', 'USP / EP Test Protocols', '≥ 99.5% Purity Target'],
   },
   {
     id: 'img5',
@@ -58,14 +33,6 @@ const allPhotos: PhotoItem[] = [
     specs: ['Multi-Story Synthesis Block', 'Classified Clean Ventilation', 'Commercial Scale Production'],
   },
   {
-    id: 'img6',
-    image: '/img6.jpeg',
-    title: 'Raw Material & Finished Goods Warehouse',
-    category: 'Logistics & Warehouse',
-    description: 'Orderly indoor warehouse with designated drum storage racks, quarantine zones, and pallet racking.',
-    specs: ['HDPE & Steel Drum Racks', 'Batch Barcode System', 'Climate Monitored'],
-  },
-  {
     id: 'img7',
     image: '/img7.jpeg',
     title: 'Plant Elevation & Reaction Block Facility View',
@@ -74,28 +41,20 @@ const allPhotos: PhotoItem[] = [
     specs: ['Chilled Water & Steam Lines', 'Scrubber Filtered Exhaust', 'Pharma-Grade Construction'],
   },
   {
-    id: 'img8',
-    image: '/img8.jpeg',
-    title: 'Administrative Block & Quality Assurance HQ',
-    category: 'Infrastructure',
-    description: 'Administrative building housing plant management, regulatory documentation, and technical offices.',
-    specs: ['Plant Executive Suites', 'cGMP Archival Vault', 'Central SCADA Server Room'],
-  },
-  {
     id: 'img9',
     image: '/img9.jpeg',
-    title: 'Reactor Hall & Condenser Loop Area',
-    category: 'Reaction Systems',
-    description: 'Specialized reaction area containing stainless steel (SS-316) and glass-lined vessels.',
-    specs: ['SS-316 & Glass Lined', '-20°C to +250°C Capability', 'Automated Temperature Loops'],
+    title: 'Central Plant Grounds & Utility Infrastructure',
+    category: 'Manufacturing Block',
+    description: 'Main production facility grounds housing central utilities, power backup, and nitrogen distribution.',
+    specs: ['Dedicated Substation', 'Nitrogen Plant & Air Scrubbers', 'WHO-GMP Compliant'],
   },
   {
-    id: 'img10',
-    image: '/img10.jpeg',
-    title: 'Analytical Quality Control Testing Laboratory',
-    category: 'Quality Control',
-    description: 'Instrument laboratory equipped for HPLC chromatography, titration, and raw material qualification.',
-    specs: ['HPLC & GC Spectrophotometry', 'USP / EP Test Protocols', '≥ 99.5% Purity Target'],
+    id: 'img4',
+    image: '/img4.jpeg',
+    title: 'Plant Garden Pathway & Greenery Enclosure',
+    category: 'EHS & Environment',
+    description: 'Paved pedestrian pathway surrounded by green cover, maintaining clean environmental surroundings.',
+    specs: ['Green Belt Enclosure', 'Designated Walkways', 'Zero Emission Standards'],
   },
   {
     id: 'img11',
@@ -107,7 +66,7 @@ const allPhotos: PhotoItem[] = [
   },
 ];
 
-const categories = ['All Photos', 'Campus Overview', 'Infrastructure', 'Manufacturing Block', 'Reaction Systems', 'Quality Control', 'Logistics & Warehouse', 'EHS & Environment'];
+const categories = ['All Photos', 'Manufacturing Block', 'Quality Control', 'EHS & Environment'];
 
 export default function Infrastructure() {
   const [selectedCategory, setSelectedCategory] = useState('All Photos');
@@ -122,42 +81,49 @@ export default function Infrastructure() {
       title="Infrastructure"
       description="Explore authentic manufacturing infrastructure and facility photography of Adeep Life Sciences / Quest Pharma in Hyderabad, India."
     >
-      <PageHero
-        label="World-Class Infrastructure"
-        title="Our Manufacturing Facilities & Labs"
-        subtitle="Explore all 11 authentic photographs of our chemical synthesis blocks, reactor trains, HPLC testing labs, warehouses, and zero-discharge facilities in Hyderabad."
-      />
+      {/* Streamlined Hero & Authentic Photo Gallery Section */}
+      <section className="relative pt-24 sm:pt-28 pb-16 bg-white dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+        {/* Soft background ambient glow */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[750px] h-[300px] bg-gradient-to-r from-teal-500/10 via-cyan-500/10 to-indigo-500/10 blur-[130px] rounded-full" />
+        </div>
 
-      {/* Interactive 11-Photo Gallery Section */}
-      <section className="py-20 lg:py-28 bg-white dark:bg-slate-950 transition-colors duration-300">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           
-          <SectionHeading
-            label="Authentic Facility Photography"
-            title="Real-World Production Infrastructure"
-            subtitle="Browse clean high-resolution photographs showcasing our Hyderabad plant campus, warehouses, and laboratories."
-          />
+          {/* Header */}
+          <div className="text-center max-w-3xl mx-auto mb-8">
+            <span className="pill pill-teal mb-3 inline-flex text-xs py-1 px-3.5 shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-teal-500 mr-1.5" />
+              Verified Plant Photography
+            </span>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight mb-3">
+              Our Manufacturing <span className="text-gradient-vivid">Facilities &amp; Labs</span>
+            </h1>
+            <p className="text-slate-500 dark:text-slate-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+              Authentic high-resolution photographs of our Hyderabad and Bidar plant campus, synthesis blocks, testing laboratories, and warehouses.
+            </p>
 
-          {/* Category Filter Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5 mt-8 mb-12">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2.5 rounded-full text-xs font-bold transition-all duration-300 cursor-pointer flex items-center gap-2 ${
-                  selectedCategory === cat
-                    ? 'bg-teal-600 text-white shadow-md shadow-teal-500/25 scale-[1.03]'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
-                }`}
-              >
-                {cat === 'All Photos' && <Filter className="w-3.5 h-3.5" />}
-                {cat}
-              </button>
-            ))}
+            {/* Category Filter Buttons */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-5">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-300 cursor-pointer flex items-center gap-1.5 ${
+                    selectedCategory === cat
+                      ? 'bg-teal-600 text-white shadow-md shadow-teal-500/25 scale-[1.03]'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  }`}
+                >
+                  {cat === 'All Photos' && <Filter className="w-3 h-3" />}
+                  {cat}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Clean Photo Cards Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Clean Photo Cards Grid — Visible Immediately Upon Opening! */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <AnimatePresence mode="popLayout">
               {filteredPhotos.map((item, idx) => (
                 <motion.div
