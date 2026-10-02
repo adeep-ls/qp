@@ -108,14 +108,14 @@ export default function AboutQuest() {
   }, []);
 
   return (
-    <section id="about" className="relative py-20 sm:py-24 lg:py-28 bg-white transition-colors duration-300 overflow-hidden select-none">
+    <section id="about" className="relative py-10 sm:py-14 lg:py-16 bg-white transition-colors duration-300 overflow-hidden select-none">
       {/* Subtle Background Elements */}
       <div className="pointer-events-none absolute inset-0 dot-pattern opacity-25 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
       <div className="pointer-events-none absolute top-1/4 right-1/4 w-[750px] h-[350px] bg-gradient-to-r from-teal-400/10 via-cyan-400/10 to-blue-400/10 blur-[130px] rounded-full" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         {/* Top Hero Row: Left Content + Right Animated Scientific Simulation (7 + 5 cols) */}
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center mb-16 lg:mb-20">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* Left Column: Narrative & Values (7 cols) */}
           <motion.div

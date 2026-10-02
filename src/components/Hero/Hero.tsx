@@ -1,201 +1,112 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import {
-  ArrowRight,
-  ShieldCheck,
-  Award,
-  Globe2,
-  ChevronRight,
-  FlaskConical,
-} from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { useCounter } from '../../hooks/useCounter';
-import { useSplash } from '../../context/SplashContext';
+
+const bgImages = [
+  '/facility-reactor.png',
+  '/hero-bg.jpg',
+  '/hero-reactors-v2.jpg',
+  '/hero-synthesis-v2.jpg',
+  '/hero-cleanroom-v2.jpg',
+];
+
+const slideDuration = (index: number) => (index === 0 ? 5000 : 3000);
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 28 },
   visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.15 + i * 0.12,
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-    },
+    opacity: 1, y: 0,
+    transition: { delay: 0.1 + i * 0.12, duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number,number,number,number] },
   }),
 };
 
-const trustBadges = [
-  { icon: ShieldCheck, label: 'Schedule M / WHO-GMP' },
-  { icon: Award, label: 'ISO 9001:2015 Certified' },
-  { icon: Globe2, label: 'Global Regulatory Ready' },
-  { icon: FlaskConical, label: 'Zero Liquid Discharge (ZLD)' },
-];
-
 export default function Hero() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { isSplashActive } = useSplash();
-  const show = !isSplashActive;
+  const [current, setCurrent] = useState(0);
+  const apis = useCounter(150, 2200, 0, true);
+  const years = useCounter(15, 2200, 0, true);
 
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '18%']);
-  const contentOp = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const contentY = useTransform(scrollYProgress, [0, 0.6], ['0px', '60px']);
-
-  const apis = useCounter(35, 2200, 0, show);
-  const years = useCounter(15, 2200, 0, show);
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setCurrent(p => (p + 1) % bgImages.length);
+    }, slideDuration(current));
+    return () => clearTimeout(t);
+  }, [current]);
 
   return (
-    <section
-      ref={ref}
-      id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
-    >
-      {/* ── Full-width background image with parallax ── */}
-      <motion.div
-        className="absolute inset-0 w-full h-full"
-        style={{ y: bgY }}
-      >
-        <img
-          src="/facility-reactor.jpg"
-          alt="Quest Pharma Manufacturing Facility"
-          className="w-full h-full object-cover"
-          style={{ minHeight: '110%' }}
+    <div id="home" style={{ height: '100vh', minHeight: '600px', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+
+      {/* Crossfading background */}
+      <AnimatePresence mode="sync">
+        <motion.div
+          key={current}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: 'easeInOut' }}
+          style={{ position: 'absolute', inset: 0, backgroundImage: `url(${bgImages[current]})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
         />
-        {/* Dark gradient overlays for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-slate-950/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/30" />
-      </motion.div>
+      </AnimatePresence>
 
-      {/* ── Subtle ambient glow ── */}
-      <div className="absolute bottom-0 left-0 w-[500px] h-[300px] bg-teal-500/10 blur-[120px] rounded-full pointer-events-none" />
+      {/* Overlay */}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,15,35,0.72) 0%, rgba(5,15,35,0.45) 55%, rgba(5,15,35,0.05) 100%)', zIndex: 2 }} />
 
-      {/* ── Main Content (Centered) ── */}
-      <motion.div
-        style={{ opacity: contentOp, y: contentY }}
-        className="relative z-10 mx-auto max-w-4xl w-full px-5 sm:px-8 lg:px-12 py-20 sm:py-24 lg:py-28 text-center"
-      >
-        {/* Badge */}
-        <motion.div
-          custom={0}
-          variants={fadeUp}
-          initial="hidden"
-          animate={show ? 'visible' : 'hidden'}
-          className="mb-7 flex justify-center"
-        >
-          <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-teal-400/30 bg-teal-500/10 backdrop-blur-md text-teal-300 text-xs font-bold uppercase tracking-widest">
-            <span className="relative flex h-2 w-2">
-              <span className="ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-400" />
+      {/* Dot indicators */}
+      <div style={{ position: 'absolute', bottom: 28, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 8, zIndex: 10 }}>
+        {bgImages.map((_, i) => (
+          <button key={i} onClick={() => setCurrent(i)}
+            style={{ width: i === current ? 24 : 8, height: 8, borderRadius: 9999, background: i === current ? '#2dd4bf' : 'rgba(255,255,255,0.45)', border: 'none', cursor: 'pointer', transition: 'all 0.35s ease', boxShadow: i === current ? '0 0 8px rgba(45,212,191,0.6)' : 'none' }}
+          />
+        ))}
+      </div>
+
+      {/* Text content */}
+      <div style={{ position: 'relative', zIndex: 10, maxWidth: 1280, margin: '0 auto', width: '100%', padding: '0 3rem' }}>
+        <div style={{ maxWidth: 560 }}>
+
+          <motion.h1 custom={0} variants={fadeUp} initial="hidden" animate="visible"
+            className="font-black leading-[1.15] tracking-tight text-white mb-5 select-none"
+            style={{ fontSize: 'clamp(1.8rem, 3.2vw, 3rem)', textShadow: '0 2px 16px rgba(0,0,0,0.5)' }}
+          >
+            Regulatory Standards in{' '}
+            <span style={{ backgroundImage: 'linear-gradient(90deg, #5eead4, #22d3ee, #2dd4bf)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              APIs &amp; Intermediates
             </span>
-            WHO-GMP &amp; cGMP Compliant Manufacturing
-          </span>
-        </motion.div>
+          </motion.h1>
 
-        {/* Headline */}
-        <motion.h1
-          custom={1}
-          variants={fadeUp}
-          initial="hidden"
-          animate={show ? 'visible' : 'hidden'}
-          className="text-[clamp(1.8rem,3.6vw,3.2rem)] font-black leading-[1.15] tracking-tight text-white mb-4 select-none"
-        >
-          Purity and Precision
-          <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-cyan-300 to-teal-400">
-            Regulatory Standards in APIs &amp; Intermediates
-          </span>
-        </motion.h1>
-
-        {/* Subtitle */}
-        <motion.p
-          custom={2}
-          variants={fadeUp}
-          initial="hidden"
-          animate={show ? 'visible' : 'hidden'}
-          className="text-sm sm:text-base text-slate-300 max-w-xl mx-auto leading-relaxed mb-7 font-normal"
-        >
-          Quest Pharma delivers high-purity API intermediates and bulk drug products 
-          from our state-of-the-art Hyderabad manufacturing complex — trusted by 
-          pharmaceutical companies worldwide.
-        </motion.p>
-
-        {/* Action Buttons */}
-        <motion.div
-          custom={3}
-          variants={fadeUp}
-          initial="hidden"
-          animate={show ? 'visible' : 'hidden'}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-9"
-        >
-          <Link
-            to="/products"
-            className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-bold text-xs tracking-wide shadow-lg shadow-teal-500/30 hover:shadow-xl hover:shadow-teal-500/40 hover:scale-[1.03] active:scale-95 transition-all duration-300"
+          <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible"
+            style={{ display: 'flex', gap: '0.75rem', marginBottom: '2rem' }}
           >
-            <span>Explore Products</span>
-            <motion.span
-              animate={{ x: [0, 4, 0] }}
-              transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <ArrowRight className="w-4 h-4" />
-            </motion.span>
-          </Link>
+            <Link to="/products" className="group inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-bold text-sm tracking-wide shadow-lg shadow-teal-500/30 hover:scale-[1.04] active:scale-95 transition-all duration-300">
+              Explore Products
+              <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}>
+                <ArrowRight className="w-4 h-4" />
+              </motion.span>
+            </Link>
+            <Link to="/about" className="group inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/25 hover:border-white/50 text-white font-semibold text-sm shadow-sm hover:scale-[1.04] active:scale-95 transition-all duration-300">
+              Discover Quest Pharma
+              <ChevronRight className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200" />
+            </Link>
+          </motion.div>
 
-          <Link
-            to="/about"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/20 hover:border-white/40 text-white font-bold text-xs shadow-sm hover:shadow-lg hover:scale-[1.03] active:scale-95 transition-all duration-300"
+          <motion.div custom={2} variants={fadeUp} initial="hidden" animate="visible"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '2rem', padding: '0.75rem 1.5rem', borderRadius: '0.875rem', background: 'rgba(255,255,255,0.10)', backdropFilter: 'blur(14px)', border: '1px solid rgba(255,255,255,0.2)' }}
           >
-            Discover Quest Pharma
-            <ChevronRight className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200" />
-          </Link>
-        </motion.div>
-
-        {/* Animated Stats Strip */}
-        <motion.div
-          custom={4}
-          variants={fadeUp}
-          initial="hidden"
-          animate={show ? 'visible' : 'hidden'}
-          className="inline-flex items-center gap-6 sm:gap-10 px-6 py-3 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 mb-6"
-        >
-          {[
-            { value: apis, suffix: '+', label: 'Commercial APIs' },
-            { value: years, suffix: '+', label: 'Years Expertise' },
-            { value: 100, suffix: '%', label: 'cGMP Compliance' },
-          ].map((stat, idx, arr) => (
-            <div key={stat.label} className={`text-center ${idx < arr.length - 1 ? 'pr-6 sm:pr-10 border-r border-white/10' : ''}`}>
-              <p className="text-xl sm:text-2xl font-black text-white leading-none tabular-nums">
-                {stat.value}{stat.suffix}
-              </p>
-              <p className="text-[10px] font-semibold text-slate-400 mt-1.5 uppercase tracking-wider">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* Trust Badges */}
-        <motion.div
-          custom={5}
-          variants={fadeUp}
-          initial="hidden"
-          animate={show ? 'visible' : 'hidden'}
-          className="flex flex-wrap items-center justify-center gap-3"
-        >
-          {trustBadges.map((badge) => {
-            const Icon = badge.icon;
-            return (
-              <div
-                key={badge.label}
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 backdrop-blur-md border border-white/10 text-slate-300 text-xs font-semibold"
-              >
-                <Icon className="w-3.5 h-3.5 text-teal-400" />
-                {badge.label}
+            {[
+              { value: apis, suffix: '+', label: 'APIs & Intermediates' },
+              { value: years, suffix: '+', label: 'Yrs Expertise' },
+              { value: 100, suffix: '%', label: 'cGMP Compliance' },
+            ].map((s, i, arr) => (
+              <div key={s.label} style={{ textAlign: 'left', paddingRight: i < arr.length - 1 ? '2rem' : 0, borderRight: i < arr.length - 1 ? '1px solid rgba(255,255,255,0.2)' : 'none' }}>
+                <p className="text-xl font-black text-white leading-none tabular-nums">{s.value}{s.suffix}</p>
+                <p className="text-[10px] font-semibold text-teal-300 mt-1 uppercase tracking-wider">{s.label}</p>
               </div>
-            );
-          })}
-        </motion.div>
-      </motion.div>
-    </section>
+            ))}
+          </motion.div>
+
+        </div>
+      </div>
+    </div>
   );
 }

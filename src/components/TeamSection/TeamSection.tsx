@@ -35,7 +35,7 @@ const teamDisciplines = [
 
 export default function TeamSection() {
   return (
-    <section id="team" className="relative py-20 sm:py-24 lg:py-28 bg-white text-slate-900 overflow-hidden">
+    <section id="team" className="relative py-10 sm:py-14 lg:py-16 bg-white text-slate-900 overflow-hidden">
       {/* Background Ambience */}
       <div className="pointer-events-none absolute inset-0 dot-pattern opacity-25 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
 

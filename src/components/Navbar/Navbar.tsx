@@ -32,11 +32,7 @@ export default function Navbar() {
   return (
     <>
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
-          solid
-            ? 'bg-white/90 backdrop-blur-xl shadow-sm border-b border-slate-100'
-            : 'bg-transparent'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-400 bg-white shadow-sm border-b border-slate-100"
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -47,7 +43,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link to="/" aria-label="Quest Pharma Home" className="shrink-0 flex items-center">
               <div className="p-1 rounded-xl transition-all">
-                <img src="/logo.png" alt="Quest Pharma" className="h-9 lg:h-10 w-auto object-contain" />
+                <img src="/logo.png" alt="Quest Pharma" className="h-12 lg:h-14 w-auto object-contain" />
               </div>
             </Link>
 
@@ -60,9 +56,7 @@ export default function Navbar() {
                     className={`relative px-3.5 py-2 text-[13px] font-semibold rounded-lg transition-all duration-200
                       ${active
                         ? 'text-teal-600'
-                        : solid
-                          ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
-                          : 'text-slate-200 hover:text-white hover:bg-white/10'
+                        : 'text-slate-800 hover:text-teal-600 hover:bg-teal-50'
                       }`}
                   >
                     {link.name}
@@ -113,7 +107,7 @@ export default function Navbar() {
               <div>
                 <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
                   <div className="p-1 rounded-lg">
-                    <img src="/logo.png" alt="Quest Pharma" className="h-8 w-auto object-contain" />
+                    <img src="/logo.png" alt="Quest Pharma" className="h-11 w-auto object-contain" />
                   </div>
                   <div className="flex items-center gap-2">
                     <button onClick={() => setMobileOpen(false)}

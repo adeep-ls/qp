@@ -64,7 +64,7 @@ const checklist = [
 
 export default function WhyQuestPharma() {
   return (
-    <section className="relative py-20 lg:py-28 bg-gradient-to-b from-white via-slate-50/60 to-white overflow-hidden">
+    <section className="relative py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-slate-50/60 to-white overflow-hidden">
       {/* Subtle scientific grid background pattern */}
       <div className="pointer-events-none absolute inset-0 dot-pattern opacity-35 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_85%)]" />
       {/* Subtle colorful ambient aura */}

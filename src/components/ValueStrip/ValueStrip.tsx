@@ -91,7 +91,7 @@ const capabilities = [
 
 export default function ValueStrip() {
   return (
-    <section className="relative py-20 sm:py-26 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/50 overflow-hidden">
+    <section className="relative py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-slate-50/80 via-white to-slate-50/50 overflow-hidden">
       {/* Subtle scientific grid background pattern */}
       <div className="pointer-events-none absolute inset-0 dot-pattern opacity-25 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
       {/* Soft corporate ambient background aura */}
@@ -106,7 +106,7 @@ export default function ValueStrip() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, margin: '-60px' }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <span className="pill pill-teal mb-3 inline-flex text-xs py-1 px-3">What We Deliver</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mt-1 mb-3">

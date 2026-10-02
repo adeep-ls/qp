@@ -63,7 +63,7 @@ const commitments = [
 
 export default function QualitySection() {
   return (
-    <section id="quality" className="relative py-20 sm:py-24 lg:py-28 bg-white dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+    <section id="quality" className="relative py-10 sm:py-14 lg:py-16 bg-white dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
       {/* Subtle background */}
       <div className="pointer-events-none absolute inset-0 dot-pattern opacity-25 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
       <div className="pointer-events-none absolute bottom-0 left-1/3 w-96 h-96 bg-teal-500/10 blur-[130px] rounded-full" />

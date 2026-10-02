@@ -76,7 +76,7 @@ export default function FacilityGallery() {
     if (!isPlaying || lightbox) return;
     timerRef.current = window.setInterval(() => {
       next();
-    }, 4500);
+    }, 3000);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -104,7 +104,7 @@ export default function FacilityGallery() {
   const currentItem = galleryImages[active];
 
   return (
-    <section className="relative py-16 sm:py-22 bg-white text-slate-900 overflow-hidden select-none">
+    <section className="relative py-10 sm:py-14 lg:py-16 bg-white text-slate-900 overflow-hidden select-none">
       {/* ── Subtle Background Patterns ── */}
       <div className="pointer-events-none absolute inset-0 dot-pattern opacity-25 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
       <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 w-[850px] h-[360px] bg-gradient-to-r from-teal-400/10 via-cyan-400/10 to-blue-400/10 blur-[130px] rounded-full" />

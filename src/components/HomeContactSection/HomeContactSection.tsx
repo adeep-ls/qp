@@ -5,7 +5,7 @@ import { company } from '../../data/company';
 
 export default function HomeContactSection() {
   return (
-    <section id="contact" className="relative py-20 sm:py-24 lg:py-28 bg-white dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
+    <section id="contact" className="relative py-10 sm:py-14 lg:py-16 bg-white dark:bg-slate-950 transition-colors duration-300 overflow-hidden">
       {/* Background styling */}
       <div className="pointer-events-none absolute inset-0 dot-pattern opacity-25 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]" />
       <div className="pointer-events-none absolute top-1/4 right-1/3 w-[500px] h-[300px] bg-teal-500/10 blur-[130px] rounded-full" />

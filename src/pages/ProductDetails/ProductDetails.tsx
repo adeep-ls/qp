@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, FlaskConical, Package, Microscope, FileText, Mail } from 'lucide-react';
+import { ArrowLeft, FlaskConical, Package, Microscope, FileText, Mail, Hash, Pill, ShieldCheck, Activity } from 'lucide-react';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import PageHero from '../../components/PageHero/PageHero';
 import CTA from '../../components/CTA/CTA';
@@ -32,7 +32,11 @@ export default function ProductDetails() {
   }
 
   const details = [
-    { icon: Microscope, label: 'Composition', value: product.composition },
+    ...(product.cas ? [{ icon: Hash, label: 'CAS Registry Number', value: product.cas }] : []),
+    ...(product.targetApi ? [{ icon: Pill, label: 'Target API (For)', value: product.targetApi }] : []),
+    ...(product.grade ? [{ icon: ShieldCheck, label: 'Pharmacopeial Grade', value: product.grade }] : []),
+    ...(product.therapeuticArea ? [{ icon: Activity, label: 'Therapeutic Area / Indication', value: product.therapeuticArea }] : []),
+    { icon: Microscope, label: 'Composition & Chemistry', value: product.composition },
     { icon: Package, label: 'Packaging Standards', value: product.packaging },
     { icon: FileText, label: 'Applications & Synonyms', value: product.applications },
   ];
@@ -67,12 +71,28 @@ export default function ProductDetails() {
               animate="visible"
               className="lg:col-span-2"
             >
-              <div className="aspect-square rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center sticky top-28 p-8 shadow-sm">
+              <div className="rounded-3xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center sticky top-28 p-8 shadow-sm text-center">
                 <div className="w-24 h-24 rounded-3xl bg-teal-50 dark:bg-teal-950/60 flex items-center justify-center text-teal-600 dark:text-teal-400 mb-4 shadow-inner">
                   <FlaskConical className="w-12 h-12" />
                 </div>
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{product.category}</span>
-                <span className="text-sm font-bold text-slate-900 dark:text-white mt-1 text-center">{product.name}</span>
+                <span className="text-xs font-bold text-teal-600 dark:text-teal-400 uppercase tracking-widest bg-teal-50 dark:bg-teal-950/50 px-3 py-1 rounded-full border border-teal-200/50 mb-3">{product.category}</span>
+                <span className="text-lg font-black text-slate-900 dark:text-white mt-1 text-center">{product.name}</span>
+                {product.cas && (
+                  <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-200/60 dark:bg-slate-800 text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">
+                    <Hash className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
+                    CAS: {product.cas}
+                  </div>
+                )}
+                {product.targetApi && (
+                  <div className="mt-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+                    Target API: <span className="font-semibold text-slate-700 dark:text-slate-200">{product.targetApi}</span>
+                  </div>
+                )}
+                {product.grade && (
+                  <div className="mt-2 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/50 text-[11px] font-semibold text-blue-700 dark:text-blue-300 border border-blue-200/40">
+                    Grade: {product.grade}
+                  </div>
+                )}
               </div>
             </motion.div>
 
