@@ -10,14 +10,49 @@ import {
   ArrowRight,
   Filter,
   FileCheck,
-  CheckCircle2,
   ChevronRight,
+  Pill,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
-import ProductCard from '../../components/ProductCard/ProductCard';
 import CTA from '../../components/CTA/CTA';
 import { products } from '../../data/products';
+
+const categoryStyles: Record<string, { badge: string; iconBg: string; iconColor: string }> = {
+  'Commercial APIs': {
+    badge: 'bg-emerald-50 text-emerald-800 border-emerald-200/70',
+    iconBg: 'bg-emerald-50',
+    iconColor: 'text-emerald-600',
+  },
+  'Oncology APIs': {
+    badge: 'bg-purple-50 text-purple-800 border-purple-200/70',
+    iconBg: 'bg-purple-50',
+    iconColor: 'text-purple-600',
+  },
+  'API Intermediates': {
+    badge: 'bg-teal-50 text-teal-800 border-teal-200/70',
+    iconBg: 'bg-teal-50',
+    iconColor: 'text-teal-600',
+  },
+  'Speciality Chemicals': {
+    badge: 'bg-amber-50 text-amber-800 border-amber-200/70',
+    iconBg: 'bg-amber-50',
+    iconColor: 'text-amber-600',
+  },
+};
+
+function getCategoryIcon(cat: string) {
+  switch (cat) {
+    case 'Commercial APIs':
+      return Pill;
+    case 'Oncology APIs':
+      return Atom;
+    case 'Speciality Chemicals':
+      return Sparkles;
+    default:
+      return FlaskConical;
+  }
+}
 
 const productMetrics = [
   { value: '150+', label: 'Commercial APIs & Intermediates', icon: FlaskConical },
@@ -57,7 +92,7 @@ export default function Products() {
   return (
     <PageWrapper
       title="Products & Commercial Portfolio"
-      description="Explore Quest Pharma's comprehensive portfolio of high-purity API intermediates and bulk drug intermediates."
+      description="Explore Quest Group's comprehensive portfolio of high-purity API intermediates and bulk drug intermediates."
     >
       {/* ─── 1. Breathtaking Hero Section ─── */}
       <section className="relative pt-32 pb-14 lg:pt-40 lg:pb-20 overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white">
@@ -102,14 +137,14 @@ export default function Products() {
 
               {/* Subtitle */}
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-6 max-w-2xl">
-                Advanced commercial-scale synthesis of Active Pharmaceutical Ingredients and specialized bulk drug building blocks. Produced under validated cGMP protocols with certified chromatographic purity and complete regulatory tech packs.
+                Advanced commercial-scale synthesis of Active Pharmaceutical Ingredients and specialized bulk drug building blocks. Produced under validated cGMP protocols with certified chromatographic purity and complete regulatory standards.
               </p>
 
               {/* Feature Badges */}
               <div className="flex flex-wrap items-center gap-2.5 mb-8">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100/90 border border-slate-200 text-slate-700 text-xs font-semibold">
                   <ShieldCheck className="w-3.5 h-3.5 text-teal-600" />
-                  Pharmacopeial Specs (USP / EP / IP)
+                  Pharmacopeial Specs (USP / BP / EP / IP)
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100/90 border border-slate-200 text-slate-700 text-xs font-semibold">
                   <Atom className="w-3.5 h-3.5 text-teal-600" />
@@ -117,7 +152,7 @@ export default function Products() {
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-100/90 border border-slate-200 text-slate-700 text-xs font-semibold">
                   <FileCheck className="w-3.5 h-3.5 text-teal-600" />
-                  100% Audit-Ready CoAs
+                  100% Auditable
                 </span>
               </div>
 
@@ -150,62 +185,12 @@ export default function Products() {
             >
               <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl bg-slate-900 group">
                 <img
-                  src="/card-api.jpg"
-                  alt="Quest Pharma API and chemical intermediate molecules"
+                  src="/card-api.webp"
+                  alt="Quest Group API and chemical intermediate molecules"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-[340px] sm:h-[400px] lg:h-[440px] object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-
-                {/* Dark Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-slate-950/15" />
-
-                {/* Top Floating Badge */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/20 text-white text-xs font-semibold shadow-lg">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Commercial Scale Availability</span>
-                  </div>
-                  <span className="px-2.5 py-1 rounded-full bg-teal-500/90 text-white text-[11px] font-extrabold shadow-sm">
-                    {products.length}+ APIs
-                  </span>
-                </div>
-
-                {/* Bottom Floating Telemetry Card */}
-                <div className="absolute bottom-4 left-4 right-4 z-10">
-                  <div className="p-3.5 rounded-2xl bg-slate-950/85 backdrop-blur-xl border border-white/20 shadow-xl flex items-center justify-between gap-3 text-white">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-400/30 flex items-center justify-center text-teal-300">
-                        <FlaskConical className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">
-                          Standard Quality Target
-                        </div>
-                        <div className="text-sm font-black text-white">
-                          ≥ 99.5% Assay Purity
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="px-2.5 py-1 rounded-lg bg-teal-500/20 border border-teal-400/30 text-teal-300 text-[11px] font-bold shrink-0">
-                      HPLC Verified
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Decorative Glass Chip */}
-              <div className="hidden sm:flex absolute -bottom-5 -left-6 items-center gap-3 p-3.5 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-xl z-20">
-                <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center font-bold text-xs">
-                  <CheckCircle2 className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs font-black text-slate-900 leading-tight">
-                    Full Regulatory Dossiers
-                  </div>
-                  <div className="text-[10px] text-slate-500">
-                    DMF &amp; Tech Pack Ready
-                  </div>
-                </div>
               </div>
             </motion.div>
 
@@ -333,12 +318,70 @@ export default function Products() {
             )}
           </div>
 
-          {/* Products Grid */}
+          {/* Products List (Single Line Per Product, No Specs) */}
           {filtered.length > 0 ? (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filtered.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+            <div className="space-y-2">
+              {filtered.map((product) => {
+                const style = categoryStyles[product.category] ?? categoryStyles['API Intermediates'];
+                const Icon = getCategoryIcon(product.category);
+
+                return (
+                  <div
+                    key={product.id}
+                    className="group flex flex-col md:flex-row md:items-center justify-between gap-3 px-4 sm:px-5 py-3 rounded-xl bg-white border border-slate-200/90 hover:border-teal-400 hover:shadow-xs transition-all"
+                  >
+                    {/* Left: Product Icon, Name & Category Badge */}
+                    <div className="flex items-center gap-3 min-w-0 flex-1">
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${style.iconBg}`}>
+                        <Icon className={`w-4 h-4 ${style.iconColor}`} />
+                      </div>
+                      <div className="min-w-0 flex items-center gap-2.5 flex-wrap">
+                        <span className="text-sm font-bold text-slate-900 group-hover:text-teal-700 transition-colors truncate">
+                          {product.name}
+                        </span>
+                        <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${style.badge}`}>
+                          {product.category}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Middle: Details (Therapeutic Area / Target API / Grade / CAS) */}
+                    <div className="flex items-center gap-2 flex-wrap text-xs shrink-0">
+                      {product.therapeuticArea && (
+                        <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200/60">
+                          {product.therapeuticArea}
+                        </span>
+                      )}
+                      {product.targetApi && (
+                        <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 border border-teal-200/60">
+                          For: {product.targetApi}
+                        </span>
+                      )}
+                      {product.grade && (
+                        <span className="hidden sm:inline-block text-[11px] font-semibold px-2 py-0.5 rounded-md bg-purple-50 text-purple-800 border border-purple-200/60">
+                          {product.grade}
+                        </span>
+                      )}
+                      {product.cas && (
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 border border-slate-200">
+                          CAS: {product.cas}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Right: Inquire CoA Link (No Specs) */}
+                    <div className="shrink-0 flex items-center">
+                      <Link
+                        to={`/contact?subject=${encodeURIComponent(`Inquiry for ${product.name}`)}`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-teal-700 bg-teal-50 hover:bg-teal-600 hover:text-white border border-teal-200/80 hover:border-teal-600 transition-all shadow-2xs"
+                      >
+                        <span>Inquire CoA</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           ) : (
             <div className="text-center py-16 px-4 rounded-2xl border border-dashed border-slate-200 bg-slate-50/50">

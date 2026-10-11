@@ -13,15 +13,19 @@ export default function HomeContactSection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 lg:mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-700 dark:text-teal-300 text-xs font-bold uppercase tracking-wider mb-3.5">
-            Get in Touch
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-teal-50 via-cyan-50 to-emerald-50 dark:bg-teal-950/60 border border-teal-200/90 dark:border-teal-800 text-teal-800 dark:text-teal-300 text-xs font-bold uppercase tracking-wider mb-3.5 shadow-2xs">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
+            </span>
+            <span>Get in Touch</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight mb-4">
-            Contact <span className="text-gradient">Our Team</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+            Contact{' '}
+            <span className="bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              Our Team
+            </span>
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
-            Inquire about commercial batch pricing, custom synthesis route scouting, or request working samples and technical dossiers.
-          </p>
         </div>
 
         {/* 2-Column Contact Block */}
@@ -42,8 +46,8 @@ export default function HomeContactSection() {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-900 dark:text-white">Headquarters &amp; Plant</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{company.location}</p>
+                    <p className="text-xs font-bold text-slate-900 dark:text-white">Head Office</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{company.address}</p>
                   </div>
                 </div>
 
@@ -85,7 +89,7 @@ export default function HomeContactSection() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-teal-600" />
-                  <span>Free sample &amp; CoA dispatch for qualified sponsors</span>
+                  <span>Free sample &amp; CoA dispatch for qualified customers</span>
                 </div>
               </div>
             </div>

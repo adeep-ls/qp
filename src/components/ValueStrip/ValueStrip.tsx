@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Pill, FlaskConical, Sparkles, Beaker, Sliders, Globe } from 'lucide-react';
+import { Pill, FlaskConical, Sparkles, Sliders, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const capabilities = [
@@ -14,7 +14,7 @@ const capabilities = [
     border: 'border-teal-100 hover:border-teal-300',
     shadow: 'hover:shadow-teal-500/15',
     accent: '#14b8a6',
-    image: '/card-api.jpg',
+    image: '/card-api.webp',
     link: '/products',
   },
   {
@@ -28,7 +28,7 @@ const capabilities = [
     border: 'border-blue-100 hover:border-blue-300',
     shadow: 'hover:shadow-blue-500/15',
     accent: '#3b82f6',
-    image: '/card-intermediate.jpg',
+    image: '/card-intermediate.webp',
     link: '/products',
   },
   {
@@ -42,25 +42,11 @@ const capabilities = [
     border: 'border-purple-100 hover:border-purple-300',
     shadow: 'hover:shadow-purple-500/15',
     accent: '#a855f7',
-    image: '/card-synthesis.jpg',
+    image: '/card-synthesis.webp',
     link: '/capabilities',
   },
   {
     num: '04',
-    icon: Beaker,
-    tag: 'High Purity',
-    title: 'Fine Chemicals',
-    desc: 'Specialized organic building blocks and analytical-grade reagents.',
-    color: 'text-rose-600',
-    bg: 'bg-rose-50',
-    border: 'border-rose-100 hover:border-rose-300',
-    shadow: 'hover:shadow-rose-500/15',
-    accent: '#f43f5e',
-    image: '/card-fine.jpg',
-    link: '/capabilities',
-  },
-  {
-    num: '05',
     icon: Sliders,
     tag: 'Optimization',
     title: 'Process Development',
@@ -70,11 +56,11 @@ const capabilities = [
     border: 'border-amber-100 hover:border-amber-300',
     shadow: 'hover:shadow-amber-500/15',
     accent: '#f59e0b',
-    image: '/card-process.jpg',
+    image: '/card-process.webp',
     link: '/capabilities',
   },
   {
-    num: '06',
+    num: '05',
     icon: Globe,
     tag: 'Global Supply',
     title: 'Worldwide Logistics',
@@ -84,7 +70,7 @@ const capabilities = [
     border: 'border-green-100 hover:border-green-300',
     shadow: 'hover:shadow-green-500/15',
     accent: '#22c55e',
-    image: '/card-logistics.jpg',
+    image: '/card-logistics.webp',
     link: '/contact',
   },
 ];
@@ -108,9 +94,18 @@ export default function ValueStrip() {
           transition={{ duration: 0.5 }}
           className="text-center mb-8"
         >
-          <span className="pill pill-teal mb-3 inline-flex text-xs py-1 px-3">What We Deliver</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-teal-50 via-cyan-50 to-emerald-50 border border-teal-200/90 text-teal-800 text-xs font-bold uppercase tracking-wider mb-3 shadow-2xs">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
+            </span>
+            <span>What We Deliver</span>
+          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mt-1 mb-3">
-            Comprehensive <span className="text-gradient">Pharmaceutical Solutions</span>
+            Comprehensive{' '}
+            <span className="bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              Pharmaceutical Solutions
+            </span>
           </h2>
           <p className="text-slate-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed font-normal">
             From multi-step chemical synthesis to commercial bulk manufacturing for global pharmaceutical industries.
@@ -131,8 +126,8 @@ export default function ValueStrip() {
           </div>
         </motion.div>
 
-        {/* 6 Balanced Colorful Cards Grid with Background Images */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-3.5 sm:gap-4">
+        {/* 5 Balanced Colorful Cards Grid with Background Images */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
           {capabilities.map((c, i) => (
             <motion.div
               key={c.title}
@@ -148,14 +143,16 @@ export default function ValueStrip() {
                 <img
                   src={c.image}
                   alt={c.title}
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     const target = e.currentTarget;
                     if (!target.dataset.fallback) {
                       target.dataset.fallback = '1';
                       if (c.image.includes('synthesis')) {
-                        target.src = '/why-flask.jpg';
+                        target.src = '/why-flask.webp';
                       } else if (c.image.includes('fine')) {
-                        target.src = '/why-rnd.jpg';
+                        target.src = '/why-rnd.webp';
                       }
                     }
                   }}

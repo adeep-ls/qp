@@ -125,13 +125,19 @@ export default function AboutQuest() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-7 space-y-6"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-700 text-xs font-bold uppercase tracking-wider shadow-2xs">
-              <Sparkles className="w-3.5 h-3.5 text-teal-600" />
-              Who We Are
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-teal-50 via-cyan-50 to-emerald-50 border border-teal-200/90 text-teal-800 text-xs font-bold uppercase tracking-wider shadow-2xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
+              </span>
+              <span>Who We Are</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-              About <span className="text-gradient">Quest</span>
+              About{' '}
+              <span className="bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent">
+                Quest Group
+              </span>
             </h2>
 
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">

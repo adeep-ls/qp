@@ -40,16 +40,16 @@ export default function SplashScreen({ onComplete }: Props) {
       setProgress((p) => {
         if (p >= 100) {
           clearInterval(interval);
-          setTimeout(onComplete, 500);
+          setTimeout(onComplete, 150);
           return 100;
         }
-        return p + 1.8;
+        return p + 4;
       });
-    }, 30);
+    }, 20);
 
     const textInterval = setInterval(() => {
       setTextIdx((i) => (i + 1) % loadingTexts.length);
-    }, 900);
+    }, 450);
 
     return () => {
       clearInterval(interval);
@@ -64,8 +64,9 @@ export default function SplashScreen({ onComplete }: Props) {
       style={{ background: '#030712' }}
       initial={{ opacity: 1 }}
       exit={{
+        opacity: 0,
         clipPath: ['inset(0% 0% 0% 0%)', 'inset(0% 0% 100% 0%)'],
-        transition: { duration: 0.85, ease: [0.76, 0, 0.24, 1] },
+        transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] },
       }}
     >
       {/* Aurora background blobs */}
@@ -170,8 +171,8 @@ export default function SplashScreen({ onComplete }: Props) {
           }}
         >
           <img
-            src="/logo.png"
-            alt="Quest Pharma"
+            src="/logo.webp"
+            alt="Quest Group"
             className="w-28 sm:w-32 h-auto object-contain"
           />
         </motion.div>

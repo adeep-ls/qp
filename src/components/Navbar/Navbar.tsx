@@ -10,7 +10,6 @@ const navLinks = [
   { name: 'Products', path: '/products' },
   { name: 'Quality', path: '/quality' },
   { name: 'Capabilities', path: '/capabilities' },
-  { name: 'Infrastructure', path: '/infrastructure' },
   { name: 'R&D', path: '/research' },
   { name: 'Contact', path: '/contact' },
 ];
@@ -41,9 +40,9 @@ export default function Navbar() {
           <div className="flex h-[70px] items-center justify-between">
 
             {/* Logo */}
-            <Link to="/" aria-label="Quest Pharma Home" className="shrink-0 flex items-center">
+            <Link to="/" aria-label="Quest Group Home" className="shrink-0 flex items-center">
               <div className="p-1 rounded-xl transition-all">
-                <img src="/logo.png" alt="Quest Pharma" className="h-12 lg:h-14 w-auto object-contain" />
+                <img src="/logo.webp" alt="Quest Group" className="h-12 lg:h-14 w-auto object-contain" />
               </div>
             </Link>
 
@@ -107,7 +106,7 @@ export default function Navbar() {
               <div>
                 <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
                   <div className="p-1 rounded-lg">
-                    <img src="/logo.png" alt="Quest Pharma" className="h-11 w-auto object-contain" />
+                    <img src="/logo.webp" alt="Quest Group" className="h-11 w-auto object-contain" />
                   </div>
                   <div className="flex items-center gap-2">
                     <button onClick={() => setMobileOpen(false)}

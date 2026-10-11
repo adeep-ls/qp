@@ -12,7 +12,7 @@ const cards = [
     border: 'border-teal-100 hover:border-teal-300',
     shadow: 'hover:shadow-teal-500/20',
     accent: '#14b8a6',
-    image: '/card-integrated.jpg',
+    image: '/card-integrated.webp',
     floatDuration: 4.2,
   },
   {
@@ -24,7 +24,7 @@ const cards = [
     border: 'border-blue-100 hover:border-blue-300',
     shadow: 'hover:shadow-blue-500/20',
     accent: '#3b82f6',
-    image: '/why-expertise.jpg',
+    image: '/why-expertise.webp',
     floatDuration: 4.8,
   },
   {
@@ -36,7 +36,7 @@ const cards = [
     border: 'border-purple-100 hover:border-purple-300',
     shadow: 'hover:shadow-purple-500/20',
     accent: '#a855f7',
-    image: '/why-rnd.jpg',
+    image: '/why-rnd.webp',
     floatDuration: 4.5,
   },
   {
@@ -48,7 +48,7 @@ const cards = [
     border: 'border-amber-100 hover:border-amber-300',
     shadow: 'hover:shadow-amber-500/20',
     accent: '#f59e0b',
-    image: '/why-cost.jpg',
+    image: '/why-cost.webp',
     floatDuration: 5.1,
   },
 ];
@@ -58,8 +58,6 @@ const checklist = [
   'New product development',
   'Regulatory & IP management',
   'Environmental safety compliance',
-  'Strategic planning & project mgmt',
-  'Talent & finance management',
 ];
 
 export default function WhyQuestPharma() {
@@ -81,12 +79,18 @@ export default function WhyQuestPharma() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14"
         >
-          <div className="inline-flex items-center gap-1.5 pill pill-teal mb-4 text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-teal-500" />
-            Our Core Strengths
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-teal-50 via-cyan-50 to-emerald-50 border border-teal-200/90 text-teal-800 text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
+            </span>
+            <span>Our Core Strengths</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight mt-1 mb-3">
-            Why Choose <span className="text-gradient">Quest</span>
+            Why Choose{' '}
+            <span className="bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              Quest Group
+            </span>
           </h2>
           <p className="text-slate-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
             Delivering chemical excellence through vertical integration, deep industry talent, and uncompromised quality.
@@ -121,6 +125,8 @@ export default function WhyQuestPharma() {
                   <img
                     src={c.image}
                     alt={c.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div

@@ -11,10 +11,21 @@ const SplashContext = createContext<SplashContextType>({
 });
 
 export function SplashProvider({ children }: { children: React.ReactNode }) {
-  // Always trigger the animated splash screen on initial page load / refresh
-  const [isSplashActive, setIsSplashActive] = useState<boolean>(true);
+  // Only trigger animated splash screen once per browser session
+  const [isSplashActive, setIsSplashActive] = useState<boolean>(() => {
+    try {
+      return !sessionStorage.getItem('quest_splash_seen');
+    } catch {
+      return false;
+    }
+  });
 
   const completeSplash = () => {
+    try {
+      sessionStorage.setItem('quest_splash_seen', '1');
+    } catch {
+      // Ignore storage errors in incognito/restricted mode
+    }
     setIsSplashActive(false);
   };
 

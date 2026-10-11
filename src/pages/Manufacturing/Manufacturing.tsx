@@ -1,12 +1,7 @@
 import { motion } from 'framer-motion';
 import {
   Factory,
-  Beaker,
-  Package,
-  Warehouse,
-  Truck,
   Settings,
-  Sparkles,
   ShieldCheck,
   Atom,
   Thermometer,
@@ -57,33 +52,6 @@ const capabilities = [
       'Application of Design of Experiments (DoE) statistical modeling to systematically resolve reaction bottlenecks, shorten cycle times, and maximize solvent recovery.',
     specs: ['25%-35% Cycle Reduction', '≥ 90% Solvent Recovery', 'Thermal Hazard Testing'],
   },
-  {
-    icon: Beaker,
-    title: 'Custom & Contract Synthesis',
-    tag: 'Contract Manufacturing',
-    badge: 'Confidential NDA',
-    description:
-      'Tailored synthetic pathway scouting and contract manufacturing for proprietary molecules from gram proof-of-concept to multi-ton commercial scale.',
-    specs: ['Non-Infringing FTO', 'Gram to Multi-Kg Lots', 'Dedicated Reactor Slots'],
-  },
-  {
-    icon: Package,
-    title: 'Specialized Fine Chemicals',
-    tag: 'Specialty Chemistry',
-    badge: 'High Precision',
-    description:
-      'Production of niche heterocyclic building blocks, chiral reagents, and specialty reagents with stringent impurity profiling.',
-    specs: ['Heterocyclic Synthesis', 'Chiral Building Blocks', 'Impurity Isolation'],
-  },
-  {
-    icon: Warehouse,
-    title: 'Classified Storage & Distribution',
-    tag: 'Supply Chain',
-    badge: 'Cold Chain Ready',
-    description:
-      'Climate-controlled warehousing, nitrogen-blanketed drum storage, and international logistics documentation for dependable export delivery.',
-    specs: ['Nitrogen Blanket Packing', 'Controlled Temperature', 'Global Export Compliance'],
-  },
 ];
 
 const plantSpecs = [
@@ -109,7 +77,7 @@ export default function Manufacturing() {
   return (
     <PageWrapper
       title="Manufacturing & Capabilities"
-      description="Quest Pharma's vertically integrated manufacturing infrastructure and technical capabilities in API and bulk intermediate production."
+      description="Quest Group's vertically integrated manufacturing infrastructure and technical capabilities in API and bulk intermediate production."
     >
       {/* ─── 1. Breathtaking Hero Section ─── */}
       <section className="relative pt-32 pb-14 lg:pt-40 lg:pb-20 overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white">
@@ -202,62 +170,12 @@ export default function Manufacturing() {
             >
               <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl bg-slate-900 group">
                 <img
-                  src="/card-bulk.jpg"
-                  alt="Quest Pharma industrial pharmaceutical reaction blocks"
+                  src="/card-bulk.webp"
+                  alt="Quest Group industrial pharmaceutical reaction blocks"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-[340px] sm:h-[400px] lg:h-[440px] object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-
-                {/* Dark Vignette Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/25 to-slate-950/15" />
-
-                {/* Top Floating Badge */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/20 text-white text-xs font-semibold shadow-lg">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Commercial Production Active</span>
-                  </div>
-                  <span className="px-2.5 py-1 rounded-full bg-teal-500/90 text-white text-[11px] font-extrabold shadow-sm">
-                    WHO-GMP
-                  </span>
-                </div>
-
-                {/* Bottom Floating Telemetry Card */}
-                <div className="absolute bottom-4 left-4 right-4 z-10">
-                  <div className="p-3.5 rounded-2xl bg-slate-950/85 backdrop-blur-xl border border-white/20 shadow-xl flex items-center justify-between gap-3 text-white">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-400/30 flex items-center justify-center text-teal-300">
-                        <Atom className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <div className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">
-                          Reactor Volume Installed
-                        </div>
-                        <div className="text-sm font-black text-white">
-                          50,000+ Liters Fleet
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="px-2.5 py-1 rounded-lg bg-teal-500/20 border border-teal-400/30 text-teal-300 text-[11px] font-bold shrink-0">
-                      GLR &amp; SS-316
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Decorative Glass Chip */}
-              <div className="hidden sm:flex absolute -bottom-5 -left-6 items-center gap-3 p-3.5 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-xl z-20">
-                <div className="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center font-bold text-xs">
-                  <CheckCircle2 className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs font-black text-slate-900 leading-tight">
-                    ANFD Closed Isolation
-                  </div>
-                  <div className="text-[10px] text-slate-500">
-                    Pure Crystal Protection
-                  </div>
-                </div>
               </div>
             </motion.div>
 
@@ -363,22 +281,13 @@ export default function Manufacturing() {
       {/* ─── 4. Technical Plant Specifications ─── */}
       <section className="py-16 sm:py-20 bg-slate-50/80 border-t border-b border-slate-200/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div>
-              <span className="inline-block text-xs font-bold tracking-[0.18em] text-teal-700 uppercase mb-2">
-                Engineering Blueprint
-              </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                Plant Engineering &amp; Reaction Fleet Specs
-              </h2>
-            </div>
-            <Link
-              to="/infrastructure"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-600 hover:text-teal-700 transition-colors"
-            >
-              <span>Explore Complete Facility Tour</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+          <div className="mb-12">
+            <span className="inline-block text-xs font-bold tracking-[0.18em] text-teal-700 uppercase mb-2">
+              Engineering Blueprint
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+              Plant Engineering &amp; Reaction Fleet Specs
+            </h2>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">

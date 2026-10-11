@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { ArrowUpRight, FlaskConical, Atom, Pill, ShieldCheck, Tag } from 'lucide-react';
+import { FlaskConical, Atom, Pill, ShieldCheck, Tag } from 'lucide-react';
 import { useRef } from 'react';
 import type { Product } from '../../data/products';
 
@@ -127,19 +127,12 @@ export default function ProductCard({ product }: Props) {
           </div>
 
           {/* Action Links */}
-          <div className="flex items-center justify-between pt-3 border-t border-slate-100 text-xs">
-            <Link
-              to={`/products/${product.id}`}
-              className="inline-flex items-center gap-1 font-bold text-teal-600 hover:text-teal-700 transition-colors"
-            >
-              <span>Specs</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </Link>
+          <div className="flex items-center justify-end pt-3 border-t border-slate-100 text-xs">
             <Link
               to="/contact"
-              className="text-[11px] font-semibold text-slate-400 hover:text-teal-600 transition-colors"
+              className="inline-flex items-center gap-1 font-bold text-teal-600 hover:text-teal-700 transition-colors"
             >
-              Inquire CoA →
+              <span>Inquire CoA &rarr;</span>
             </Link>
           </div>
         </div>

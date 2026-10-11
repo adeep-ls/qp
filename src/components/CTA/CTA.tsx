@@ -45,7 +45,7 @@ export default function CTA() {
           </h2>
 
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto mb-9 font-normal relative z-10">
-            Partner with Quest Pharma for cGMP-compliant chemical synthesis, custom reaction development, and verified bulk intermediate manufacturing.
+            Partner with Quest Group for cGMP-compliant chemical synthesis, custom reaction development, and verified bulk intermediate manufacturing.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">

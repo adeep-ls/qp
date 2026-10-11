@@ -30,7 +30,7 @@ export default function PageWrapper({ children, title, description }: PageWrappe
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = `${title} | Quest Pharma`;
+    document.title = `${title} | Quest Group`;
     const meta = document.querySelector('meta[name="description"]');
     if (meta && description) {
       meta.setAttribute('content', description);

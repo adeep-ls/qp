@@ -1,11 +1,8 @@
 import { motion } from 'framer-motion';
 import {
-  Target,
-  Eye,
   Users,
   Award,
   TrendingUp,
-  Sparkles,
   ShieldCheck,
   CheckCircle2,
   ArrowRight,
@@ -13,13 +10,11 @@ import {
   Building2,
   FlaskConical,
   Microscope,
-  FileCheck,
   ChevronRight,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PageWrapper from '../../components/PageWrapper/PageWrapper';
 import CTA from '../../components/CTA/CTA';
-import { company } from '../../data/company';
 
 const keyStats = [
   { value: '150+', label: 'Commercial APIs & Intermediates', icon: FlaskConical },
@@ -63,35 +58,11 @@ const values = [
   },
 ];
 
-const facilityHighlights = [
-  {
-    title: 'Synthetic Chemistry R&D',
-    category: 'Process Scouting',
-    desc: 'Equipped for gram-to-kilo route scouting, stereochemical control, and non-infringing process design.',
-    image: '/card-synthesis.jpg',
-    tag: 'FTO Routes',
-  },
-  {
-    title: 'Commercial Production Block',
-    category: 'Scale-Up Trains',
-    desc: 'Multi-stage Glass-Lined and SS-316 reaction batteries supporting batch scale up to 50,000+ Liters.',
-    image: '/img5.jpeg',
-    tag: '50,000+ L Fleet',
-  },
-  {
-    title: 'Analytical Quality Control',
-    category: 'Regulatory Release',
-    desc: 'High-resolution HPLC, GC-HS, and pharmacopeial testing ensuring 100% CoA compliance across USP/EP/IP.',
-    image: '/img10.jpeg',
-    tag: 'ICH Q2 Validated',
-  },
-];
-
 export default function About() {
   return (
     <PageWrapper
       title="About Us"
-      description="Quest Pharma - Vertically integrated APIs and Bulk Drug Intermediates manufacturer in Hyderabad, India."
+      description="Quest Group - Vertically integrated APIs and Bulk Drug Intermediates manufacturer in Hyderabad, India."
     >
       {/* ─── 1. Breathtaking Hero Section ─── */}
       <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white">
@@ -135,7 +106,7 @@ export default function About() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
                 </span>
-                <span>About Quest Pharma • Hyderabad, India</span>
+                <span>About Quest Group • Hyderabad, India</span>
               </div>
 
               {/* Headline */}
@@ -196,8 +167,10 @@ export default function About() {
             >
               <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl bg-slate-900 group">
                 <img
-                  src="/why-expertise.jpg"
-                  alt="Quest Pharma chemical synthesis and pharmaceutical engineering"
+                  src="/why-expertise.webp"
+                  alt="Quest Group chemical synthesis and pharmaceutical engineering"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-[360px] sm:h-[420px] lg:h-[460px] object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
 
@@ -294,124 +267,7 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      {/* ─── 3. Company Story & Strategic Pillars ─── */}
-      <section className="py-16 sm:py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            
-            {/* Left Narrative Column */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="lg:col-span-6 space-y-5"
-            >
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-bold uppercase tracking-wider">
-                <Sparkles className="w-3.5 h-3.5 text-teal-600" />
-                <span>Company Heritage &amp; Vision</span>
-              </div>
-
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                Rooted in Chemistry, <br />
-                <span className="text-teal-600">Driven by Global Standards</span>
-              </h2>
-
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                {company.overview}
-              </p>
-
-              <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                {company.team}
-              </p>
-
-              {/* Executive Direction Quote Card */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-teal-50/60 to-cyan-50/40 border border-teal-200/80 mt-6">
-                <p className="text-xs sm:text-sm italic font-medium text-slate-800 leading-relaxed mb-3">
-                  "Our mission is to establish sustainable chemical synthesis solutions that combine rigorous cGMP quality, robust stereochemical control, and true cost leadership for global partners."
-                </p>
-                <div className="flex items-center justify-between text-xs font-bold text-teal-900">
-                  <span>{company.managedBy}</span>
-                  <span className="text-[11px] font-semibold text-teal-700">Executive Leadership</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right Strategic Pillars Column */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="lg:col-span-6 space-y-4"
-            >
-              {/* Mission Card */}
-              <div className="p-6 rounded-2xl border border-slate-200 bg-white hover:border-teal-300 shadow-2xs hover:shadow-md transition-all group">
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-teal-600 shrink-0 group-hover:scale-105 group-hover:bg-teal-500 group-hover:text-white transition-all">
-                    <Target className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-base font-bold text-slate-900">Our Mission</h3>
-                      <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-teal-100 text-teal-800">
-                        Reliability
-                      </span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      To deliver high-quality pharmaceutical intermediates and APIs while maintaining cost leadership and competitiveness, serving the global pharmaceutical industry with unwavering reliability and consistency.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Vision Card */}
-              <div className="p-6 rounded-2xl border border-slate-200 bg-white hover:border-cyan-300 shadow-2xs hover:shadow-md transition-all group">
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-xl bg-cyan-50 border border-cyan-100 flex items-center justify-center text-cyan-600 shrink-0 group-hover:scale-105 group-hover:bg-cyan-500 group-hover:text-white transition-all">
-                    <Eye className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-base font-bold text-slate-900">Our Vision</h3>
-                      <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-cyan-100 text-cyan-800">
-                        Global Reach
-                      </span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      To be a premier global partner for pharmaceutical chemical synthesis, recognized for scientific rigor, patent-safe route design, and transparent long-term collaboration.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Leadership & Governance Card */}
-              <div className="p-6 rounded-2xl border border-slate-200 bg-white hover:border-blue-300 shadow-2xs hover:shadow-md transition-all group">
-                <div className="flex items-start gap-4">
-                  <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0 group-hover:scale-105 group-hover:bg-blue-500 group-hover:text-white transition-all">
-                    <Users className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-base font-bold text-slate-900">Leadership &amp; Governance</h3>
-                      <span className="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
-                        Governance
-                      </span>
-                    </div>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      Promoted by a multidisciplinary council averaging 15+ years of chemical leadership covering synthetic chemistry, process development, regulatory filings, and environmental safety management.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 4. Strategic Values ("What Drives Us") ─── */}
+      {/* ─── 3. Strategic Values ("What Drives Us") ─── */}
       <section className="py-16 sm:py-20 bg-slate-50/80 border-t border-b border-slate-200/80">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
@@ -467,67 +323,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ─── 5. Infrastructure & Operations Snapshot ─── */}
-      <section className="py-16 sm:py-24 bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-            <div>
-              <span className="inline-block text-xs font-bold tracking-[0.18em] text-teal-700 uppercase mb-2">
-                Operational Highlights
-              </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-                Our Facilities &amp; Technology
-              </h2>
-            </div>
-            <Link
-              to="/infrastructure"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-teal-600 hover:text-teal-700 transition-colors"
-            >
-              <span>View Full Infrastructure Tour</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {facilityHighlights.map((facility, idx) => (
-              <motion.div
-                key={facility.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                className="group rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-2xs hover:shadow-lg transition-all"
-              >
-                <div className="relative h-48 overflow-hidden bg-slate-900">
-                  <img
-                    src={facility.image}
-                    alt={facility.title}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
-                  <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-slate-950/75 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold">
-                    {facility.tag}
-                  </span>
-                </div>
-
-                <div className="p-5">
-                  <span className="text-[10px] font-bold text-teal-700 uppercase tracking-wider block mb-1">
-                    {facility.category}
-                  </span>
-                  <h3 className="text-base font-bold text-slate-900 mb-1.5">
-                    {facility.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {facility.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 6. Global Call To Action ─── */}
+      {/* ─── 4. Global Call To Action ─── */}
       <CTA />
     </PageWrapper>
   );

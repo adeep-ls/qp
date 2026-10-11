@@ -106,7 +106,7 @@ export default function Research() {
   return (
     <PageWrapper
       title="Research & Development"
-      description="Quest Pharma's research and development capabilities in synthetic chemistry, process development, and new product innovation."
+      description="Quest Group's research and development capabilities in synthetic chemistry, process development, and new product innovation."
     >
       {/* ─── 1. Breathtaking Hero Section ─── */}
       <section className="relative pt-32 pb-14 lg:pt-40 lg:pb-20 overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-white">
@@ -199,8 +199,10 @@ export default function Research() {
             >
               <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl bg-slate-900 group">
                 <img
-                  src="/why-rnd.jpg"
-                  alt="Quest Pharma chemical research and laboratory synthesis"
+                  src="/why-rnd.webp"
+                  alt="Quest Group chemical research and laboratory synthesis"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-[340px] sm:h-[400px] lg:h-[440px] object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
 

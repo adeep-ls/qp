@@ -5,11 +5,11 @@ import { ArrowRight, ChevronRight } from 'lucide-react';
 import { useCounter } from '../../hooks/useCounter';
 
 const bgImages = [
-  '/facility-reactor.png',
-  '/hero-bg.jpg',
-  '/hero-reactors-v2.jpg',
-  '/hero-synthesis-v2.jpg',
-  '/hero-cleanroom-v2.jpg',
+  '/facility-reactor.webp',
+  '/hero-bg.webp',
+  '/hero-reactors-v2.webp',
+  '/hero-synthesis-v2.webp',
+  '/hero-cleanroom-v2.webp',
 ];
 
 const slideDuration = (index: number) => (index === 0 ? 5000 : 3000);
@@ -27,6 +27,14 @@ export default function Hero() {
   const apis = useCounter(150, 2200, 0, true);
   const years = useCounter(15, 2200, 0, true);
 
+  // Preload upcoming slides so switching is instant without flicker
+  useEffect(() => {
+    bgImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   useEffect(() => {
     const t = setTimeout(() => {
       setCurrent(p => (p + 1) % bgImages.length);
@@ -35,7 +43,7 @@ export default function Hero() {
   }, [current]);
 
   return (
-    <div id="home" style={{ height: '100vh', minHeight: '600px', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+    <div id="home" style={{ height: '100vh', minHeight: '600px', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', backgroundColor: '#071527' }}>
 
       {/* Crossfading background */}
       <AnimatePresence mode="sync">
@@ -66,11 +74,21 @@ export default function Hero() {
         <div style={{ maxWidth: 560 }}>
 
           <motion.h1 custom={0} variants={fadeUp} initial="hidden" animate="visible"
-            className="font-black leading-[1.15] tracking-tight text-white mb-5 select-none"
-            style={{ fontSize: 'clamp(1.8rem, 3.2vw, 3rem)', textShadow: '0 2px 16px rgba(0,0,0,0.5)' }}
+            className="font-black leading-[1.18] tracking-tight mb-5 select-none"
+            style={{ fontSize: 'clamp(1.85rem, 3.2vw, 3.1rem)' }}
           >
-            Regulatory Standards in{' '}
-            <span style={{ backgroundImage: 'linear-gradient(90deg, #5eead4, #22d3ee, #2dd4bf)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            <span className="text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
+              Regulatory Standards in{' '}
+            </span>
+            <span
+              className="inline-block"
+              style={{
+                backgroundImage: 'linear-gradient(135deg, #38bdf8 0%, #2dd4bf 45%, #4ade80 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                filter: 'drop-shadow(0 0 24px rgba(45,212,191,0.55)) drop-shadow(0 2px 8px rgba(0,0,0,0.6))',
+              }}
+            >
               APIs &amp; Intermediates
             </span>
           </motion.h1>
@@ -85,7 +103,7 @@ export default function Hero() {
               </motion.span>
             </Link>
             <Link to="/about" className="group inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/25 hover:border-white/50 text-white font-semibold text-sm shadow-sm hover:scale-[1.04] active:scale-95 transition-all duration-300">
-              Discover Quest Pharma
+              Discover Quest Group
               <ChevronRight className="w-4 h-4 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200" />
             </Link>
           </motion.div>

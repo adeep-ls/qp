@@ -30,8 +30,11 @@ export default function ContactForm() {
   const validate = (): boolean => {
     const errs: Partial<FormData> = {};
     if (!data.name.trim()) errs.name = 'Name is required';
+    if (!data.company.trim()) errs.company = 'Company is required';
     if (!data.email.trim()) errs.email = 'Email is required';
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errs.email = 'Invalid email address';
+    if (!data.phone.trim()) errs.phone = 'Phone number is required';
+    if (!data.subject.trim()) errs.subject = 'Subject is required';
     if (!data.message.trim()) errs.message = 'Message is required';
     setErrors(errs);
     return Object.keys(errs).length === 0;
@@ -104,6 +107,7 @@ export default function ContactForm() {
           <input
             id="name"
             type="text"
+            required
             value={data.name}
             onChange={(e) => setData({ ...data, name: e.target.value })}
             placeholder="Your full name"
@@ -115,16 +119,20 @@ export default function ContactForm() {
         </div>
         <div>
           <label htmlFor="company" className="block text-xs font-semibold text-navy-700 mb-1.5">
-            Company
+            Company <span className="text-red-400">*</span>
           </label>
           <input
             id="company"
             type="text"
+            required
             value={data.company}
             onChange={(e) => setData({ ...data, company: e.target.value })}
             placeholder="Company name"
             className={inputClass('company')}
+            aria-required="true"
+            aria-invalid={!!errors.company}
           />
+          {errors.company && <p className="mt-1 text-xs text-red-500">{errors.company}</p>}
         </div>
       </div>
 
@@ -136,6 +144,7 @@ export default function ContactForm() {
           <input
             id="email"
             type="email"
+            required
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
             placeholder="your@email.com"
@@ -147,31 +156,39 @@ export default function ContactForm() {
         </div>
         <div>
           <label htmlFor="phone" className="block text-xs font-semibold text-navy-700 mb-1.5">
-            Phone
+            Phone <span className="text-red-400">*</span>
           </label>
           <input
             id="phone"
             type="tel"
+            required
             value={data.phone}
             onChange={(e) => setData({ ...data, phone: e.target.value })}
             placeholder="Phone number"
             className={inputClass('phone')}
+            aria-required="true"
+            aria-invalid={!!errors.phone}
           />
+          {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
         </div>
       </div>
 
       <div>
         <label htmlFor="subject" className="block text-xs font-semibold text-navy-700 mb-1.5">
-          Subject
+          Subject <span className="text-red-400">*</span>
         </label>
         <input
           id="subject"
           type="text"
+          required
           value={data.subject}
           onChange={(e) => setData({ ...data, subject: e.target.value })}
           placeholder="Subject of your enquiry"
           className={inputClass('subject')}
+          aria-required="true"
+          aria-invalid={!!errors.subject}
         />
+        {errors.subject && <p className="mt-1 text-xs text-red-500">{errors.subject}</p>}
       </div>
 
       <div>
@@ -181,6 +198,7 @@ export default function ContactForm() {
         <textarea
           id="message"
           rows={5}
+          required
           value={data.message}
           onChange={(e) => setData({ ...data, message: e.target.value })}
           placeholder="Tell us about your requirements..."
